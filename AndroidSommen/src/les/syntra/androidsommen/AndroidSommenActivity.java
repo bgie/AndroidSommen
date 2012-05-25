@@ -9,6 +9,9 @@ public class AndroidSommenActivity extends Activity {
 
     
     private TextView txtTest;
+    
+    // Brecht was HIER!
+    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
