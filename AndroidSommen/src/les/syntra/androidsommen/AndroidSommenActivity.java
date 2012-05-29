@@ -10,7 +10,7 @@ public class AndroidSommenActivity extends Activity {
     // We zitten nu in een parallel universum!
 	
     private TextView txtTest;
-    //Brecht Jr. Reporting in: dit is van desktop!
+    //Brecht Jr. Reporting in: dit is van desktop en laptop!
     // Brecht was HIER!
     
     @Override
