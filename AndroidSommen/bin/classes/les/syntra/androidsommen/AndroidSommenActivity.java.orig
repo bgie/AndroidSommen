@@ -1,0 +1,24 @@
+package les.syntra.androidsommen;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.widget.TextView;
+
+public class AndroidSommenActivity extends Activity {
+    /** Called when the activity is first created. */
+
+    
+    private TextView txtTest;
+<<<<<<< HEAD
+    
+    // Brecht was HIER!
+    
+=======
+    //Brecht Jr. Reporting in: dit is van desktop!
+>>>>>>> 66eaca2a0a11eb3fcb49a2c8134ff0b12a6fff65
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+    }
+}
