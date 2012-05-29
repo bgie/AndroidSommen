@@ -1,5 +1,7 @@
-package les.syntra.androidsommen;
+package les.syntra.androidsommen.gui;
 
+import les.syntra.androidsommen.R;
+import les.syntra.androidsommen.R.layout;
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
