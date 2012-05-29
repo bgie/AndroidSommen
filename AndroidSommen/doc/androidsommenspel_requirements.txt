@@ -31,9 +31,65 @@ Applicatie start
 - instellingen (2)
 	- 
 	
-- top scores
+- top scores (3)
 	- weergave hoogste score van elke level. Klik op leven toont:
 		- weergave top 10 scores op level: naam, aantal punten, datum
 	- reset top scores
 	
+==============================
+
+PACKAGES
+- userinterface
+- utilities
+- objectmodel Logic
+	- Game
+		- Time: int
+		- CurrentExercise: Exercise
+		- CompletedExercises: int
+		- FailedExercises: int
+		- CurrentLevel: Level
+		- Score: Score
+		- Game(Player, LevelIndex)
+		- Game(Player)
+		- CalculateScore()
+	- Player
+		- Name: string
+		- Age: int
+		- UnlockedLevelIndex: int
+		- TotalTimePlayed: int
+		- Player(Name, Age, ULI, TTP)
+		- Player (Name, Age)
+	- Settings
+		- to be determined
+	- Exercise
+		- Question: string
+		- Answer: double
+		- Exercise(question, answer) -> bevat question en answer
+	- Level
+		- LevelIndex: int
+		- MaxTime: int
+		- PenaltyTime: int
+		- CorrectAnswersNeeded: int
+		- MinTotal: int
+		- MaxTotal: int
+		- Operands: string
+		- CreateExercise()
+		- Level(levelindex)
+	- Score
+		- Player: Player
+		- LevelIndex: int
+		- score: int
+		- date: date
+		- Score(Player, LevelIndex, Score, Date)
+		- UpdateScore(quantity int)
+	- HighScores (list of score)
+		- Add(Score)
+		- HighScores(source)
+		- Reset()
+		- GetTopScoresByLevel(levelindex, amount)
+		- GetTopScores(amount)
+		- GetTopScoresByPlayer(player, amount)
+		- Sync(url)
+	
+
 
