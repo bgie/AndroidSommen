@@ -18,6 +18,6 @@ public class AndroidSommenActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
-        // Nog een stukske tekst...
+        // Nog 
     }
 }
