@@ -1,5 +1,5 @@
 package les.syntra.androidsommen;
 
-public class Spel {
+public class Game {
 
 }
