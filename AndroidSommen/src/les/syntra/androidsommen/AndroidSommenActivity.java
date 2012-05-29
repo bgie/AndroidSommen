@@ -17,5 +17,7 @@ public class AndroidSommenActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        
+        // Nog een stukske tekst...
     }
 }
