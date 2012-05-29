@@ -9,6 +9,7 @@ public class AndroidSommenActivity extends Activity {
 
     
     private TextView txtTest;
+    //Brecht Jr. Reporting in: dit is van desktop!
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
