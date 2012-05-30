@@ -7,7 +7,7 @@ package les.syntra.androidsommen.logic;
 	> FailedExercises: int
 	> CurrentLevel: Level
 	> Score: Score
-	> Game(Player, LevelIndex)
+	0 Game(Player, LevelIndex)
 	> Game(Player)
 	- CalculateScore()
  */
@@ -25,6 +25,11 @@ public class Game {
 	{
 		Player = aPlayer;
 		//Implement levelindex
+		/* ---
+		 * Is er dan geen lijst met levels nodig waarbij
+		 * een level via index als object kan opgehaald worden?
+		 	---*/
+			
 	}
 	public Game(Player aPlayer)
 	{

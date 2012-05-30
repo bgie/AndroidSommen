@@ -10,5 +10,5 @@ package les.syntra.androidsommen.logic;
 	- Sync(url)
  */
 public class HighScores {
-	
+	// Dit is een List Of Score
 }

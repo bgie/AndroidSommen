@@ -1,4 +1,16 @@
-sommenspel
++---------------+
+|	SOMMENSPEL	|
++---------------+
+
+INHOUD:
+-Uitleg
+-Packages
+-Conventies
+-Resources
+
+==============================
+
+UITLEG:
 - niveau keuze (easy, expert, geek)
 - soort sommen keuze (tafels, optellen, ...) meerkeuze
 - aantal (vast aantal)
@@ -41,6 +53,7 @@ Applicatie start
 PACKAGES
 - userinterface
 - utilities
+	- XmlPullParser? (http://www.vogella.com/articles/AndroidXML/article.html)
 - objectmodel Logic
 	- Game
 		- Time: int
@@ -91,5 +104,18 @@ PACKAGES
 		- GetTopScoresByPlayer(player, amount)
 		- Sync(url)
 	
+==============================
 
+CONVENTIES:
+-Bij elke klasse volgens deze requirements worden de requirements bovenaan de klasse geplaatst. 
+-->Hierbij worden de volgende tekens gebruikt:
+	"-" -> zit in de requirement, maar nog niet in de klasse aanwezig (of slechts gedeeltelijk)
+	">" -> zit in de requirement en is aanwezig in de klasse
+	"0" -> zit niet in de requirement of is onduidelijk
+	"X" -> verwijderd, zal niet overgenomen worden uit de requirement
+	
+==============================	
 
+RESOURCES:
+-http://www.vogella.com/articles/Android/article.html
+-http://www.vogella.com/articles/AndroidXML/article.html
