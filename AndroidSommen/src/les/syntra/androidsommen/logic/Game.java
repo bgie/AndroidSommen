@@ -43,8 +43,12 @@ public class Game {
 		Player = aPlayer;
 	}
 	
-	private void CalculateScore()
+/*
+  	private void CalculateScore()
+ 
 	{
 		//Bereken score
 	}
+	*/
+	
 }
