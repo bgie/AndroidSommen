@@ -4,9 +4,63 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <TextView
+    <LinearLayout
+        android:layout_width="fill_parent"
+        
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/lblLevel"
+            android:layout_width="wrap_content"
+            android:layout_weight=".30"
+            android:layout_height="wrap_content"
+            android:text="@string/txtLblLevel"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/lblTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_weight=".70"
+            android:text="@string/txtLblTime"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:layout_marginRight="0dip"
+            android:id="@+id/lblScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".30"
+            android:text="@string/txtLblScore"
+            android:gravity="right"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    </LinearLayout>
+
+    
+    <TextView 
+       android:id="@+id/lblQuestion"
+       android:layout_margin="15dip"
+       android:textAppearance="?android:attr/textAppearanceLarge"
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content"
+       android:text="@string/txtlblQuestion""
+    />
+    <EditText
+        android:id="@+id/txtInput"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello" />
+        android:ems="10"
+        android:inputType="numberDecimal" >
 
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/txtBtnSubmit" />
+    
 </LinearLayout>

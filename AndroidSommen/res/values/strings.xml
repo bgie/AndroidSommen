@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="hello">Hello World, AndroidSommenActivity!</string>
     <string name="app_name">AndroidSommen</string>
-
+	<string name="txtLblScore">Score</string>
+	<string name="txtLblLevel">Level</string>
+	<string name="txtLblTime">Time</string>
+	<string name="txtBtnSubmit">Submit</string>
+	<string name="txtlblQuestion">Dummy question?</string>
 </resources>
