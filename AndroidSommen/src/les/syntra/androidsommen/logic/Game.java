@@ -18,17 +18,17 @@ public class Game {
 	 * - antwoord controleren
 	 * - level laden 
 	 */ 
-	int Time = 120;
-	Exercise CurrentExercise;
-	int CompletedExercises = 0;
-	int FailedExercises = 0;
-	Level CurrentLevel;
-	Score Score;
-	Player Player;
+	int time = 120;
+	Exercise currentExercise;
+	int completedExercises = 0;
+	int failedExercises = 0;
+	Level currentLevel;
+	Score score;
+	Player player;
 	
 	public Game(Player aPlayer, int aLevelIndex)
 	{
-		Player = aPlayer;
+		player = aPlayer;
 		//Implement levelindex
 		/* ---
 		 * Is er dan geen lijst met levels nodig waarbij
@@ -40,7 +40,7 @@ public class Game {
 	}
 	public Game(Player aPlayer)
 	{
-		Player = aPlayer;
+		player = aPlayer;
 	}
 	
 /*
