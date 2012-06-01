@@ -6,12 +6,20 @@ package les.syntra.androidsommen.logic;
 	> Exercise(question, answer)
  */
 public class Exercise {
-	String Question = "";
-	double Answer = 0;
+	String question = "";
+	double answer = 0;
 	
 	public Exercise(String aQuestion, double aAnswer)
 	{
-		Question = aQuestion;
-		Answer = aAnswer;
+		question = aQuestion;
+		answer = aAnswer;
+	}
+	public String getQuestion()
+	{
+		return question;
+	}
+	public double getAnswer()
+	{
+		return answer;
 	}
 }
