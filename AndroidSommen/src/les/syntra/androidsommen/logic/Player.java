@@ -9,6 +9,7 @@ package les.syntra.androidsommen.logic;
 	> Player (Name, Age)
  */
 public class Player {
+	// Moet nog methods voor naam en leeftijd krijgen
 	String Name = "";
 	int Age = 0;
 	int UnlockedLevelIndex = 0;

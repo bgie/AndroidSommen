@@ -13,6 +13,11 @@ package les.syntra.androidsommen.logic;
  */
 
 public class Game {
+	/* Moet nog methods krijgen voor:
+	 * - opgave tonen
+	 * - antwoord controleren
+	 * - level laden 
+	 */ 
 	int Time = 120;
 	Exercise CurrentExercise;
 	int CompletedExercises = 0;
@@ -28,6 +33,8 @@ public class Game {
 		/* ---
 		 * Is er dan geen lijst met levels nodig waarbij
 		 * een level via index als object kan opgehaald worden?
+		 * Of wordt dit hardcode in game gezet? Of mss gegenereerd door game
+		 * en opgeslaan in xml?
 		 	---*/
 			
 	}

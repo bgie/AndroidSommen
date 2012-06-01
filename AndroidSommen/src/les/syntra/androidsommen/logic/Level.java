@@ -12,6 +12,7 @@ package les.syntra.androidsommen.logic;
 	> Level(levelindex)
  */
 public class Level {
+	// Moet nog methods voor mogelijke antwoorden krijgen
 	int LevelIndex = 0;
 	int MaxTime = 120;
 	int PenaltyTime = 5;
