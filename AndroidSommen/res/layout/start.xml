@@ -9,7 +9,8 @@
         android:layout_width="106dp"
         android:layout_height="202dp"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/ic_launcher_red_cube_icon" />
+        android:src="@drawable/ic_launcher_red_cube_icon"
+        android:contentDescription="Logo" />
 
     <Button
         android:id="@+id/btnChoosePlayer"

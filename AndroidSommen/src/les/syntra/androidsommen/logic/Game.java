@@ -18,7 +18,7 @@ public class Game {
 	 * - antwoord controleren
 	 * - level laden 
 	 */ 
-	int time = 120;
+	int time = 0;
 	Exercise currentExercise;
 	int completedExercises = 0;
 	int failedExercises = 0;
@@ -36,14 +36,43 @@ public class Game {
 		 * Of wordt dit hardcode in game gezet? Of mss gegenereerd door game
 		 * en opgeslaan in xml?
 		 	---*/
-			
-	}
-	public Game(Player aPlayer)
-	{
-		player = aPlayer;
+		currentLevel = new Level(aLevelIndex);
+		time = currentLevel.getMaxTime();
+		score = new Score(player.getPlayerName(),currentLevel.getLevelIndex(),0);
+		currentExercise = currentLevel.CreateExercise();
 	}
 	
-/*
+	public Game(Player aPlayer)
+	{// Enkel als aangemaakt wordt zonder lvl --> wel nodig?
+		player = aPlayer;
+		currentLevel = new Level(0);
+		time = currentLevel.getMaxTime();
+		score = new Score(player.getPlayerName(),currentLevel.getLevelIndex(),0);
+	}
+	
+	// GETTERS
+	public int getTime()
+	{
+		return time;
+	}
+	
+	public int getScore()
+	{
+		return score.getScore();
+	}
+	
+	public int getLevelIndex()
+	{
+		return currentLevel.getLevelIndex();
+	}
+	
+	public Exercise getExercise()
+	{
+		return currentExercise;
+	}
+	
+	//METHODS
+	/*
   	private void CalculateScore()
  
 	{

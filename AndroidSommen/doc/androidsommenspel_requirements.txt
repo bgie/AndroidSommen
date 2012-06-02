@@ -52,8 +52,8 @@ Applicatie start
 ==============================
 
 Opmerkingen:
--XmlPullParser gebruiken voor xml opslag? (zie lager)
--Hoe zit het met levels? (zie game class)
+X XmlPullParser gebruiken voor xml opslag? (zie lager) --> JSON ipv XML gebruikt
+X Hoe zit het met levels? (zie game class)
 -Waar worden mogelijke antwoordmogelijkheden gegenereerd? Level? En nieuw klasse nodig?
 
 ->VOORSTELLEN:
@@ -136,3 +136,5 @@ CONVENTIES:
 RESOURCES:
 -http://www.vogella.com/articles/Android/article.html
 -http://www.vogella.com/articles/AndroidXML/article.html
+-http://developer.android.com/guide/topics/testing/testing_android.html
+-http://developer.android.com/guide/developing/testing/testing_eclipse.html

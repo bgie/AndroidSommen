@@ -14,10 +14,12 @@ public class Exercise {
 		question = aQuestion;
 		answer = aAnswer;
 	}
+	
 	public String getQuestion()
 	{
 		return question;
 	}
+	
 	public double getAnswer()
 	{
 		return answer;

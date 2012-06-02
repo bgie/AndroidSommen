@@ -19,13 +19,14 @@ public class Level {
 	int maxTime = 120;
 	int penaltyTime = 5;
 	int correctAnswersNeeded = 1;
-	int minTotal = 0; //tijdelijk nog geen nut
+	int minTotal = 0;
 	int maxTotal = 100;
 	String operands = "+-*/";
 	
 	public Level(int aLevelIndex)
 	{
 		levelIndex = aLevelIndex;
+		createLevel();
 	}
 
 	private void createLevel()
@@ -33,10 +34,10 @@ public class Level {
 		switch(levelIndex)
 		{
 		case 1:
-			setLevelSettings("+", 5, 10);
+			setLevelSettings("+", 1, 10);
 		break;
 		case 2:
-			setLevelSettings("-", 5, 10);
+			setLevelSettings("-", 3, 10);
 		break;
 		case 3:
 			setLevelSettings("*", 5, 10);
@@ -62,10 +63,26 @@ public class Level {
 		case 10:
 			setLevelSettings("+-*/", 10, 100);
 		break;
+		case 11:
+			setLevelSettings("+-*/", 10, 100, 10);
+		break;
 		default:
 			setLevelSettings("+-*/", 20, 999999, 0, 30);
 		}
 	}
+	
+	//GETTERS
+	public int getMaxTime()
+	{
+		return maxTime;
+	}
+	
+	public int getLevelIndex()
+	{
+		return levelIndex;
+	}
+	
+	//SETTERS
 	private void setLevelSettings(String aOperands, int aCorrectAnswersNeeded, int aMaxTotal, 
 									int aMinTotal, int aPenaltyTime)
 	{
@@ -75,6 +92,7 @@ public class Level {
 		maxTotal = aMaxTotal;
 		operands = aOperands;
 	}
+	
 	private void setLevelSettings(String aOperands, int aCorrectAnswersNeeded,
 									int aMaxTotal, int aPenaltyTime)
 	{
@@ -84,6 +102,7 @@ public class Level {
 		maxTotal = aMaxTotal;
 		operands = aOperands;
 	}
+	
 	private void setLevelSettings(String aOperands, int aCorrectAnswersNeeded,
 			int aMaxTotal)
 	{
@@ -93,6 +112,8 @@ public class Level {
 		maxTotal = aMaxTotal;
 		operands = aOperands;
 	}
+	
+	//METHODS
 	public Exercise CreateExercise()
 	{
 		int result = 0;
@@ -100,8 +121,6 @@ public class Level {
 		int digit2 = 0;
 		String question = "?+?=?";
 		double answer = 0;
-
-		
 		
 		//Bepaal operand
 		int operandQty = operands.length();
@@ -113,7 +132,7 @@ public class Level {
 		
 		if(randomOperand == '+' || randomOperand == '*')
 		{// als + of maal dan uitkomst is gelijk aan maxtotal
-			result = (int) Math.floor(Math.random() * maxTotal);
+			result = (int) Math.floor(Math.random() * (maxTotal-minTotal))+minTotal;
 			if(randomOperand == '+')
 			{
 				digit1 = (int) Math.floor(Math.random() * result);
@@ -136,7 +155,7 @@ public class Level {
 			
 			if(randomOperand == '-')
 			{
-				digit1 = (int) Math.floor(Math.random() * maxTotal);
+				digit1 = (int) Math.floor(Math.random() * (maxTotal-minTotal))+minTotal;
 				digit2 = (int) Math.floor(Math.random() * digit1);
 				result = digit1 - digit2;
 				question = digit1+ "-" +digit2+ "=?";
@@ -144,8 +163,8 @@ public class Level {
 			}
 			else
 			{// Operand = /
-				digit2 = (int) Math.floor(Math.random() * Math.sqrt(maxTotal-1))+1;
-				result = (int) Math.floor(Math.random() * Math.sqrt(maxTotal));
+				digit2 = (int) Math.floor(Math.random() * Math.sqrt(maxTotal-minTotal-1))+minTotal+1;
+				result = (int) Math.floor(Math.random() * Math.sqrt(maxTotal-minTotal))+minTotal;
 				digit1 = result*digit2;
 				question = digit1+ "/" +digit2+ "=?";
 				answer = result;

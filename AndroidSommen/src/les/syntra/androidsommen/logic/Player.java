@@ -37,6 +37,16 @@ public class Player {
 		totalTimePlayed = json.getLong(totalTimePlayedTag);
 	}
 	
+	public String getPlayerName()
+	{
+		return name;
+	}
+	
+	public int getAge()
+	{
+		return age;
+	}
+	
 	public JSONObject toJSON() throws JSONException {
 		JSONObject json = new JSONObject();
 		json.put(nameTag, name);
