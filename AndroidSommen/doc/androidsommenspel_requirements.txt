@@ -55,6 +55,7 @@ Opmerkingen:
 X XmlPullParser gebruiken voor xml opslag? (zie lager) --> JSON ipv XML gebruikt
 X Hoe zit het met levels? (zie game class)
 -Waar worden mogelijke antwoordmogelijkheden gegenereerd? Level? En nieuw klasse nodig?
+-Hoe zit het met ophogen score in game? Sr. heb je hieraan gedacht in score klasse?
 
 ->VOORSTELLEN:
 	-Brecht Sr. doet xml afhandeling (volledig highscore en score + overige opslag) 
@@ -63,7 +64,15 @@ X Hoe zit het met levels? (zie game class)
 				+ eventueel game scherm
 	-Patrick en Marco doen: basis schermen opbouw (prototype)-> zodoende we kunnen testen 
 							+ Player + algemene flow + eventueel settings scherm
-	
+
+TODO:
+- generateExercise is bugged voor /(te grote getallen) en mss ook *(te klein) -> BRECHT Jr.
+- player aanmaken en selecteren -> patrick of Sr. ?
+- settingsscherm -> marco? -> tijdelijk "credits tekst"?
+- styles -> marco?
+- highscoresscherm -> patrick of Sr. of marco?
+- timer toevoegen aan game -> Jr.?
+- progressie toevoegen aan game -> volgend level -> Jr.?
 	
 ==============================
 

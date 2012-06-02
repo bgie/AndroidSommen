@@ -9,6 +9,9 @@ public class ChoosePlayerActivity extends Activity{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chooseplayer);
+        String appName = getString(R.string.app_name);
+        String activeScreen = getString(R.string.txtBtnChoosePlayer);
+        setTitle(appName + " -> " + activeScreen);
 	}
 	
 }

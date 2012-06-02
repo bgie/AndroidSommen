@@ -61,10 +61,10 @@ public class Level {
 			setLevelSettings("+-*/", 5, 50);
 		break;
 		case 10:
-			setLevelSettings("+-*/", 10, 100);
+			setLevelSettings("+-*/", 10, 100, 10);
 		break;
 		case 11:
-			setLevelSettings("+-*/", 10, 100, 10);
+			setLevelSettings("+-*/", 10, 100, 30, 10);
 		break;
 		default:
 			setLevelSettings("+-*/", 20, 999999, 0, 30);
@@ -75,6 +75,11 @@ public class Level {
 	public int getMaxTime()
 	{
 		return maxTime;
+	}
+	
+	public int getPenaltyTime()
+	{
+		return penaltyTime;
 	}
 	
 	public int getLevelIndex()

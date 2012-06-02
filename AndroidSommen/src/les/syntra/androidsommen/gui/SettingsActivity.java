@@ -9,5 +9,8 @@ public class SettingsActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
+        String appName = getString(R.string.app_name);
+        String activeScreen = getString(R.string.txtBtnSettings);
+        setTitle(appName + " -> " + activeScreen);
 	}
 }

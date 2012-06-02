@@ -9,5 +9,8 @@ public class HighScoresActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.highscores);
+        String appName = getString(R.string.app_name);
+        String activeScreen = getString(R.string.txtBtnHighScores);
+        setTitle(appName + " -> " + activeScreen);
 	}
 }

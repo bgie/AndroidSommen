@@ -72,12 +72,21 @@ public class Game {
 	}
 	
 	//METHODS
-	/*
-  	private void CalculateScore()
+	
+  	public void CalculateScore(double aAnswer)
  
 	{
 		//Bereken score
+  		if(aAnswer == currentExercise.getAnswer())
+  		{
+  			//Score +1
+  		}
+  		else
+  		{
+  			time -= currentLevel.getPenaltyTime();
+  		}
+  		currentExercise = currentLevel.CreateExercise();
 	}
-	*/
+
 	
 }

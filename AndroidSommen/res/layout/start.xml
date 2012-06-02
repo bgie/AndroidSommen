@@ -3,21 +3,23 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
-
+
+    
     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="106dp"
         android:layout_height="202dp"
         android:layout_gravity="center_horizontal"
         android:src="@drawable/ic_launcher_red_cube_icon"
-        android:contentDescription="Logo" />
-
+        android:contentDescription="@string/txtLogo" />
+
+    
     <Button
         android:id="@+id/btnChoosePlayer"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/txtBtnChoosePlayer" />
-
+        android:text="@string/txtBtnChoosePlayer" />
+    
     <Button
         android:id="@+id/btnSettings"
         android:layout_width="fill_parent"
