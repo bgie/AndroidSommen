@@ -61,6 +61,7 @@ public class GameActivity extends Activity {
 			}
 			activeGame.CalculateScore(Double.parseDouble(strInput));
 			lblTime.setText(""+activeGame.getTime());
+			lblScore.setText(""+activeGame.getScore());
 			lblQuestion.setText(""+activeGame.getExercise().getQuestion());
 		}
 	}

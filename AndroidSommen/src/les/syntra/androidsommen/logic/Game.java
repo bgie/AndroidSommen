@@ -79,7 +79,7 @@ public class Game {
 		//Bereken score
   		if(aAnswer == currentExercise.getAnswer())
   		{
-  			//Score +1
+  			score = score.UpdateScore(1);
   		}
   		else
   		{
