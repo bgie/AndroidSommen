@@ -54,7 +54,7 @@ Applicatie start
 Opmerkingen:
 X XmlPullParser gebruiken voor xml opslag? (zie lager) --> JSON ipv XML gebruikt
 X Hoe zit het met levels? (zie game class)
--Waar worden mogelijke antwoordmogelijkheden gegenereerd? Level? En nieuw klasse nodig?
+-Waar worden mogelijke antwoordmogelijkheden gegenereerd? Level? En nieuwe klasse (AnswerChoice) nodig?
 
 ->VOORSTELLEN:
 	-Brecht Sr. doet xml afhandeling (volledig highscore en score + overige opslag) 
@@ -65,11 +65,13 @@ X Hoe zit het met levels? (zie game class)
 
 TODO:
 - generateExercise is bugged voor /(te grote getallen) en mss ook *(te klein) -> BRECHT Jr.
+- generatePossibleAnswers -> Jr.
+- progressie toevoegen aan game -> volgend level -> Jr.?
 - player aanmaken en selecteren -> patrick of Sr. ?
 - highscoresscherm -> patrick of Sr. of marco?
+- leveloverzichtscherm -> patrick of marco?
 - settingsscherm -> marco? -> misschien tijdelijk "credits tekst"?
 - styles -> marco?
-- progressie toevoegen aan game -> volgend level -> Jr.?
 
 DONE:
 - Jr.
@@ -154,5 +156,9 @@ RESOURCES:
 -http://www.vogella.com/articles/AndroidXML/article.html
 -http://developer.android.com/guide/topics/testing/testing_android.html
 -http://developer.android.com/guide/developing/testing/testing_eclipse.html
--http://developer.android.com/reference/android/os/Handler.html
 -http://developer.android.com/reference/android/view/ViewGroup.html
+
+Reeds in app:
+-http://developer.android.com/reference/android/os/Handler.html (timer/gameloop)
+-http://developer.android.com/guide/topics/resources/animation-resource.html
+-http://developer.android.com/guide/topics/resources/localization.html

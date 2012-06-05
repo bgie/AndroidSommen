@@ -33,8 +33,8 @@ public class GameActivity extends Activity {
         String activeScreen = getString(R.string.txtBtnStart);
         setTitle(appName + " -> " + activeScreen);
         
-        lblLevel = (TextView)findViewById(R.id.lblTime);
-        lblTime = (TextView)findViewById(R.id.lblLevel);
+        lblLevel = (TextView)findViewById(R.id.lblLevel);
+        lblTime = (TextView)findViewById(R.id.lblTime);
         lblScore = (TextView)findViewById(R.id.lblScore);
         lblQuestion = (TextView)findViewById(R.id.lblQuestion);
         txtInput = (EditText)findViewById(R.id.txtInput);

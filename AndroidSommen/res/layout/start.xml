@@ -6,7 +6,7 @@
 
     
     <ImageView
-        android:id="@+id/imageView1"
+        android:id="@+id/appLogo"
         android:layout_width="106dp"
         android:layout_height="202dp"
         android:layout_gravity="center_horizontal"

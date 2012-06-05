@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hey! Dit scherm is in opbouw :(</string>
+    <string name="app_name">MathDroid</string>
+    
+	<string name="txtLblScore">Score</string>
+	<string name="txtLblLevel">Level</string>
+	<string name="txtLblTime">Time</string>
+	<string name="txtLblQuestion">Dummy question?</string>
+	
+	<string name="txtBtnSubmit">Verstuur</string>
+	<string name="txtBtnChoosePlayer">Kies Speler</string>
+	<string name="txtBtnSettings">Instellingen</string>
+	<string name="txtBtnHighScores">Top Scores</string>
+	<string name="txtBtnStart">Start Spel</string>
+	
+	<string name="txtLogo">MathDroid Logo</string>
+</resources>

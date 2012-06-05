@@ -5,7 +5,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
 
 public class StartActivity extends Activity {
 
@@ -13,6 +16,9 @@ public class StartActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.start);
+        ImageView appLogo= (ImageView)findViewById(R.id.appLogo);
+        Animation myFadeInAnimation = AnimationUtils.loadAnimation(this, R.anim.fadein);
+        appLogo.startAnimation(myFadeInAnimation);
         Button btnPlayer = (Button)findViewById(R.id.btnChoosePlayer);
         btnPlayer.setOnClickListener(new View.OnClickListener() {
 			

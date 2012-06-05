@@ -9,10 +9,10 @@
 	<string name="txtLblQuestion">Dummy question?</string>
 	
 	<string name="txtBtnSubmit">Submit</string>
-	<string name="txtBtnChoosePlayer">Kies Speler</string>
-	<string name="txtBtnSettings">Instellingen</string>
-	<string name="txtBtnHighScores">Top Scores</string>
-	<string name="txtBtnStart">Start Spel</string>
+	<string name="txtBtnChoosePlayer">Choose Player</string>
+	<string name="txtBtnSettings">Settings</string>
+	<string name="txtBtnHighScores">Highscores</string>
+	<string name="txtBtnStart">Start Game</string>
 	
 	<string name="txtLogo">MathDroid Logo</string>
 </resources>
