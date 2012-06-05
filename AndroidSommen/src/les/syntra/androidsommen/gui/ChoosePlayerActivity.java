@@ -24,6 +24,9 @@ public class ChoosePlayerActivity extends Activity{
         String appName = getString(R.string.app_name);
         String activeScreen = getString(R.string.txtBtnChoosePlayer);
         setTitle(appName + " -> " + activeScreen);
+        
+        txtName = (EditText)findViewById(R.id.txtName);
+        txtAge = (EditText)findViewById(R.id.txtAge);
         Button btnCreatePlayer=(Button)findViewById(R.id.btnCreatePlayer);
         
         try {
@@ -42,8 +45,8 @@ public class ChoosePlayerActivity extends Activity{
 		@Override
 		public void onClick(View v){
 			
-			String strName=""+ txtName.getText();
-			Integer intAge=Integer.parseInt( txtAge.getText().toString());
+			String strName = ""+ txtName.getText();
+			Integer intAge = Integer.parseInt( ""+txtAge.getText());
 			
 			Player plNew = new Player(strName,intAge) ;
 			/*			try {
