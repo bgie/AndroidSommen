@@ -47,7 +47,8 @@
         android:id="@+id/txtAge"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:ems="10" />
+        android:ems="10" 
+        />
 
     <Button
         android:id="@+id/btnCreatePlayer"
