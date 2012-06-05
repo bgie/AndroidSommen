@@ -102,10 +102,10 @@ public class GameActivity extends Activity {
 	private Runnable mUpdateTimer = new Runnable() {
 		   public void run() {
 			   
-			   int currentGameTime = activeGame.UpdateTime(1);
-			   lblTime.setText(""+currentGameTime);
+			   int intCurrentGameTime = activeGame.UpdateTime(1);
+			   lblTime.setText(""+intCurrentGameTime);
 			   lblScore.setText(""+activeGame.getScore());
-			   if(currentGameTime <= 0)
+			   if(intCurrentGameTime <= 0)
 			   {// Einde spel
 				   gameOver = true;
 				   //Bereken score

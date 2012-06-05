@@ -3,30 +3,31 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
-
+
     <TextView
+        android:id="@+id/lblChoosePlayer"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Kies een speler" />
+        android:text="@string/txtLblChooseAPlayer" />
 
     <ListView
-        android:id="@+id/listView1"
+        android:id="@+id/lstPlayers"
         android:layout_width="fill_parent"
         android:layout_height="217dp"
         android:layout_weight="0.00" >
     </ListView>
-
+
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/lblNewPlayer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nieuwe speler" />
-
+        android:text="@string/txtLblNewPlayer" />
+
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/lblName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Naam" />
+        android:text="@string/txtLblName" />
 
     <EditText
         android:id="@+id/txtName"
@@ -36,24 +37,25 @@
 
         <requestFocus />
     </EditText>
-
+
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/lblAge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Leeftijd" />
+        android:text="@string/txtLblAge" />
 
     <EditText
         android:id="@+id/txtAge"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:ems="10" 
+        android:inputType="number"
         />
-
+
     <Button
         android:id="@+id/btnCreatePlayer"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Maak nieuwe speler" />
+        android:text="@string/txtBtnCreateNewPlayer" />
 
 </LinearLayout>
