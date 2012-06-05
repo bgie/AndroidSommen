@@ -66,27 +66,59 @@ public class Game {
 		return currentLevel.getLevelIndex();
 	}
 	
+	public int getLevelPenaltyTime()
+	{
+		return currentLevel.getPenaltyTime();
+	}
+	
 	public Exercise getExercise()
 	{
 		return currentExercise;
 	}
 	
-	//METHODS
+	//SETTERS
+
 	
-  	public void CalculateScore(double aAnswer)
- 
+	//METHODS
+	public int UpdateTime(int aDeltaTime)
 	{
-		//Bereken score
+		time -= aDeltaTime;
+		if(time < 0){
+			time = 0;
+		}
+		return time;
+	}
+  	public boolean CalculateScore(double aAnswer)
+ 
+	{//Bereken score
+		boolean wasCorrectAnswer = false;
   		if(aAnswer == currentExercise.getAnswer())
   		{
-  			score = score.UpdateScore(1);
+  			score = score.UpdateScore(1 * currentLevel.getLevelIndex());
+  			wasCorrectAnswer = true;
   		}
   		else
   		{
   			time -= currentLevel.getPenaltyTime();
   		}
-  		currentExercise = currentLevel.CreateExercise();
+  		if(time <= 0)
+  		{// Tijd is om, toon einde
+  			TimesUp();
+  		}
+  		else
+  		{// Er is nog tijd, gereneer volgende vraag
+  			currentExercise = currentLevel.CreateExercise();
+  		}
+  		return wasCorrectAnswer;
 	}
-
+  	
+  	public void TimesUp()
+  	{
+  		time = 0;
+  		//-1 is gebruikt voor lege input
+  		//indien dit vals antwoord ook -1 zou hebben kan je eenmalig bonuspunten verdienen door op
+  		//submit te klikken op einde van spel
+		currentExercise = new Exercise("x_X GAME OVER X_x\nScore: " + score.getScore(), -2);
+  	}
 	
 }

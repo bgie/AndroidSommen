@@ -59,19 +59,27 @@ X Hoe zit het met levels? (zie game class)
 ->VOORSTELLEN:
 	-Brecht Sr. doet xml afhandeling (volledig highscore en score + overige opslag) 
 				+ eventueel highscore scherm
-	-Brecht Jr. doet level/opgave en mogelijkheden + tijd berekening en score (game class)
-				+ eventueel game scherm
+	-Brecht Jr. doet level/opgave en mogelijkheden + eventueel game scherm
 	-Patrick en Marco doen: basis schermen opbouw (prototype)-> zodoende we kunnen testen 
 							+ Player + algemene flow + eventueel settings scherm
 
 TODO:
 - generateExercise is bugged voor /(te grote getallen) en mss ook *(te klein) -> BRECHT Jr.
 - player aanmaken en selecteren -> patrick of Sr. ?
-- settingsscherm -> marco? -> tijdelijk "credits tekst"?
-- styles -> marco?
 - highscoresscherm -> patrick of Sr. of marco?
-- timer toevoegen aan game -> Jr.?
+- settingsscherm -> marco? -> misschien tijdelijk "credits tekst"?
+- styles -> marco?
 - progressie toevoegen aan game -> volgend level -> Jr.?
+
+DONE:
+- Jr.
+	-> timer/loop toevoegen aan game
+	-> tijd berekening en score (game class)
+- Sr.
+
+- Patrick
+
+- Marco
 	
 ==============================
 
@@ -146,3 +154,5 @@ RESOURCES:
 -http://www.vogella.com/articles/AndroidXML/article.html
 -http://developer.android.com/guide/topics/testing/testing_android.html
 -http://developer.android.com/guide/developing/testing/testing_eclipse.html
+-http://developer.android.com/reference/android/os/Handler.html
+-http://developer.android.com/reference/android/view/ViewGroup.html
