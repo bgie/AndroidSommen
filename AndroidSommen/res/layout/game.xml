@@ -36,7 +36,8 @@
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
     </LinearLayout>
-
+
+
     <TextView
         android:id="@+id/lblQuestion"
         android:layout_width="fill_parent"
@@ -58,9 +59,9 @@
     </EditText>
 
     <Button
-        android:id="@+id/btnSubmit"
+        android:id="@+id/btnAnswer"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/txtBtnSubmit" />
+        android:text="@string/txtBtnAnswer" />
     
 </LinearLayout>

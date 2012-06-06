@@ -1,7 +1,5 @@
 package les.syntra.androidsommen.logic;
 
-import android.util.Log;
-
 /* Ontwerp velden:
 	> LevelIndex: int
 	> MaxTime: int
@@ -131,10 +129,8 @@ public class Level {
 		int operandQty = operands.length();
 		int randomOperandIndex = (int) Math.floor(Math.random() * operandQty );
 		char randomOperand = operands.charAt(randomOperandIndex);
-		Log.d("RandomOperand: ",randomOperand+"");
-		Log.d("levelindex: ",levelIndex+"");
-		//multi select operand
 		
+		//Multi select operand
 		if(randomOperand == '+' || randomOperand == '*')
 		{// als + of maal dan uitkomst is gelijk aan maxtotal
 			result = (int) Math.floor(Math.random() * (maxTotal-minTotal))+minTotal;

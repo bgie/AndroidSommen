@@ -43,11 +43,12 @@ public class Game {
 	}
 	
 	public Game(Player aPlayer)
-	{// Enkel als aangemaakt wordt zonder lvl --> wel nodig?
-		player = aPlayer;
+	{// Enkel als aangemaakt wordt zonder lvl --> v.b. geen save game
+		/*player = aPlayer;
 		currentLevel = new Level(0);
 		time = currentLevel.getMaxTime();
-		score = new Score(player.getPlayerName(),currentLevel.getLevelIndex(),0);
+		score = new Score(player.getPlayerName(),currentLevel.getLevelIndex(),0);*/
+		this(aPlayer,0);
 	}
 	
 	// GETTERS

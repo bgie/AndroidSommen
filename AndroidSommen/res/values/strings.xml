@@ -11,17 +11,18 @@
 	<string name="txtLblName">Name</string>
 	<string name="txtLblNewPlayer">New player</string>
 	<string name="txtLblChooseAPlayer">Choose a player</string>
+	<string name="txtLblLevelSelection">Level selection</string>
 	
-	<string name="txtBtnSubmit">Submit</string>
+	<string name="txtBtnAnswer">Answer</string>
 	<string name="txtBtnChoosePlayer">Choose Player</string>
 	<string name="txtBtnSettings">Settings</string>
 	<string name="txtBtnHighScores">Highscores</string>
 	<string name="txtBtnStart">Start Game</string>
 	<string name="txtBtnCreateNewPlayer">Create new player</string>
+	<string name="txtBtnSelectLevel">Select level</string>
+	<string name="txtBtnNextLevel">Next level</string>
 	
 	<string name="txtLogo">MathDroid Logo</string>
-	
-	
 	
 	
 </resources>

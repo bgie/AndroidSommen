@@ -11,42 +11,67 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.ViewFlipper;
 
 public class GameActivity extends Activity {
-	TextView lblLevel;
-    TextView lblTime;
-    TextView lblScore;
-    TextView lblQuestion;
+	TextView lblLevel,lblTime,lblScore,lblQuestion;
     EditText txtInput;
-    Button btnSubmit;
+    Button btnAnswer,btnSelectLevel,btnNextLevel;
     boolean gameOver = false;
     boolean wasCorrectAnswer = false;
-    
-	//Voorbeeld van test game met speler(naam:test,leeftijd:34) en op level 11
-    Game activeGame = new Game(new Player("test",34),11);
+    Game activeGame;
+    ViewFlipper vfGameViewer;
     
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.game);
+        setContentView(R.layout.gameviewer);
         String appName = getString(R.string.app_name);
         String activeScreen = getString(R.string.txtBtnStart);
         setTitle(appName + " -> " + activeScreen);
         
+        vfGameViewer = (ViewFlipper)findViewById(R.id.gameViewer);
+        
+        //Choose level scherm
+        btnSelectLevel = (Button)findViewById(R.id.btnSelectLevel);
+        btnSelectLevel.setOnClickListener(new SelectLevel());
+        btnNextLevel = (Button)findViewById(R.id.btnNextLevel);
+        btnNextLevel.setOnClickListener(new NextLevel());
+        
+        //Game scherm
         lblLevel = (TextView)findViewById(R.id.lblLevel);
         lblTime = (TextView)findViewById(R.id.lblTime);
         lblScore = (TextView)findViewById(R.id.lblScore);
         lblQuestion = (TextView)findViewById(R.id.lblQuestion);
         txtInput = (EditText)findViewById(R.id.txtInput);
-        btnSubmit = (Button)findViewById(R.id.btnSubmit);
-        btnSubmit.setOnClickListener(new Submit());
-        
-        
-        StartTimer();
-        
+        btnAnswer = (Button)findViewById(R.id.btnAnswer);
+        btnAnswer.setOnClickListener(new Answer());
         
 	}
-	class Submit implements OnClickListener
+	
+	class SelectLevel implements OnClickListener
+	{
+		@Override
+		public void onClick(View v) {
+			//Voorbeeld van test game met speler(naam:test,leeftijd:34) en op level 1
+			activeGame = new Game(new Player("test",34),1);
+			vfGameViewer.showNext();
+			StartTimer();
+		}
+	}
+	
+	class NextLevel implements OnClickListener
+	{
+		@Override
+		public void onClick(View v) {
+			//Voorbeeld van test game met speler(naam:test,leeftijd:34) en op level 11
+			activeGame = new Game(new Player("test",34),11);
+			vfGameViewer.showNext();
+			StartTimer();
+		}
+	}
+	
+	class Answer implements OnClickListener
 	{
 		@Override
 		public void onClick(View v) {
@@ -79,19 +104,19 @@ public class GameActivity extends Activity {
 
 	private void StartTimer()
 	{// Tijd begint te lopen
-		mHandler.removeCallbacks(mUpdateTimer);
-        mHandler.postDelayed(mUpdateTimer,1000);
+		ResumeTimer();
         
-        //Voorbeeld van game gui
-        /*lblLevel.setText("Level 1");
-        lblTime.setText("123");
-        lblScore.setText("0");
-        lblQuestion.setText("40+2=?");*/
-        
+        //Game GUI
         lblLevel.setText("Level " + activeGame.getLevelIndex());
         lblTime.setText(""+activeGame.getTime());
         lblScore.setText(""+activeGame.getScore());
         lblQuestion.setText(""+activeGame.getExercise().getQuestion());
+	}
+	
+	private void ResumeTimer()
+	{// Spel wordt hervat
+		mHandler.removeCallbacks(mUpdateTimer);
+        mHandler.postDelayed(mUpdateTimer,1000);
 	}
 	
 	private void StopTimer()

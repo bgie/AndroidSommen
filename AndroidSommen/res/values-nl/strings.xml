@@ -11,13 +11,16 @@
 	<string name="txtLblName">Naam</string>
 	<string name="txtLblNewPlayer">Nieuwe speler</string>
 	<string name="txtLblChooseAPlayer">Kies een speler</string>
+	<string name="txtLblLevelSelection">Level keuze</string>
 	
-	<string name="txtBtnSubmit">Verstuur</string>
+	<string name="txtBtnAnswer">Antwoord</string>
 	<string name="txtBtnChoosePlayer">Kies Speler</string>
 	<string name="txtBtnSettings">Instellingen</string>
 	<string name="txtBtnHighScores">Top Scores</string>
 	<string name="txtBtnStart">Start Spel</string>
 	<string name="txtBtnCreateNewPlayer">Maak nieuwe speler</string>
+	<string name="txtBtnSelectLevel">Kies level</string>
+	<string name="txtBtnNextLevel">Volgend level</string>
 	
 	<string name="txtLogo">MathDroid Logo</string>
 </resources>

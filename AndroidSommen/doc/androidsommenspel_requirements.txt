@@ -69,7 +69,7 @@ TODO:
 - progressie toevoegen aan game -> volgend level -> Jr.?
 - player aanmaken en selecteren -> patrick of Sr. ?
 - highscoresscherm -> patrick of Sr. of marco?
-- leveloverzichtscherm -> patrick of marco?
+- leveloverzichtscherm -> Jr. //patrick of marco?
 - settingsscherm -> marco? -> misschien tijdelijk "credits tekst"?
 - styles -> marco?
 
@@ -162,3 +162,5 @@ Reeds in app:
 -http://developer.android.com/reference/android/os/Handler.html (timer/gameloop)
 -http://developer.android.com/guide/topics/resources/animation-resource.html
 -http://developer.android.com/guide/topics/resources/localization.html
+-http://www.warriorpoint.com/blog/2009/05/26/android-switching-screens-in-an-activity-with-animations-using-viewflipper/
+-http://developer.android.com/reference/android/widget/ViewFlipper.html
