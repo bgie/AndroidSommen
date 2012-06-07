@@ -52,9 +52,8 @@ Applicatie start
 ==============================
 
 Opmerkingen:
-X XmlPullParser gebruiken voor xml opslag? (zie lager) --> JSON ipv XML gebruikt
-X Hoe zit het met levels? (zie game class)
 -Waar worden mogelijke antwoordmogelijkheden gegenereerd? Level? En nieuwe klasse (AnswerChoice) nodig?
+
 
 ->VOORSTELLEN:
 	-Brecht Sr. doet xml afhandeling (volledig highscore en score + overige opslag) 
@@ -66,10 +65,15 @@ X Hoe zit het met levels? (zie game class)
 TODO:
 - generateExercise is bugged voor /(te grote getallen) en mss ook *(te klein) -> BRECHT Jr.
 - generatePossibleAnswers -> Jr.
-- progressie toevoegen aan game -> volgend level -> Jr.?
+- leveloverzichtscherm -> Jr. //patrick of marco?
+- progressie toevoegen aan game -> volgend level -> Jr.? (gameover -> verwijder antwoord en voeg toe
+				validatie geslaagd -> unlocklevel + ga terug lvl keuze scherm met nieuw level unlocked)
+				
+				>>opzoeken arraylist extends constructor (possibleanswers)
+				
+- double tap game --> pause en settings scherm (optioneel) -> Jr.
 - player aanmaken en selecteren -> patrick of Sr. ?
 - highscoresscherm -> patrick of Sr. of marco?
-- leveloverzichtscherm -> Jr. //patrick of marco?
 - settingsscherm -> marco? -> misschien tijdelijk "credits tekst"?
 - styles -> marco?
 
@@ -156,7 +160,17 @@ RESOURCES:
 -http://www.vogella.com/articles/AndroidXML/article.html
 -http://developer.android.com/guide/topics/testing/testing_android.html
 -http://developer.android.com/guide/developing/testing/testing_eclipse.html
+-http://pivotal.github.com/robolectric/index.html
+-http://www.youtube.com/watch?v=T6FWL877txw (unit testing android)
 -http://developer.android.com/reference/android/view/ViewGroup.html
+
+Voor gridview:
+-http://stackoverflow.com/questions/775188/add-an-array-of-buttons-to-a-gridview-in-an-android-application
+-http://developer.android.com/guide/tutorials/views/hello-gridview.html
+-http://developer.android.com/reference/android/widget/ArrayAdapter.html
+-http://stackoverflow.com/questions/5070830/populating-a-listview-using-arraylist
+-http://sogacity.com/how-to-make-a-custom-arrayadapter-for-listview/
+-http://stackoverflow.com/questions/4393889/how-can-i-store-an-arraylist-of-custom-objects
 
 Reeds in app:
 -http://developer.android.com/reference/android/os/Handler.html (timer/gameloop)

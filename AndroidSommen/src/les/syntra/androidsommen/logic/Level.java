@@ -1,5 +1,6 @@
 package les.syntra.androidsommen.logic;
 
+
 /* Ontwerp velden:
 	> LevelIndex: int
 	> MaxTime: int
@@ -124,6 +125,7 @@ public class Level {
 		int digit2 = 0;
 		String question = "?+?=?";
 		double answer = 0;
+		PossibleAnswers possibleAnswers = new PossibleAnswers();
 		
 		//Bepaal operand
 		int operandQty = operands.length();
@@ -172,7 +174,16 @@ public class Level {
 			}
 		}
 		
-		Exercise exercise =  new Exercise(question, answer);
+		//Exercise exercise =  new Exercise(question, answer);
+		
+		//TIJDELIJK antwoorden genereren
+		possibleAnswers.add(new AnswerChoice(result));
+		for(int ii = 0;ii<5;ii++)
+		{
+			possibleAnswers.add(new AnswerChoice((int) Math.floor(Math.random() * (result*2)-1)+1));
+		}
+		possibleAnswers.Shuffle();
+		Exercise exercise =  new Exercise(question, answer, possibleAnswers);
 		return exercise;
 	}
 }

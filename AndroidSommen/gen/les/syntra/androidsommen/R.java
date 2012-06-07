@@ -20,19 +20,20 @@ public final class R {
         public static final int ic_launcher_red_cube_icon=0x7f020001;
     }
     public static final class id {
-        public static final int appLogo=0x7f060015;
+        public static final int appLogo=0x7f060016;
         public static final int btnAnswer=0x7f060011;
-        public static final int btnChoosePlayer=0x7f060016;
+        public static final int btnChoosePlayer=0x7f060017;
         public static final int btnCreatePlayer=0x7f06000b;
-        public static final int btnHighScores=0x7f060018;
+        public static final int btnHighScores=0x7f060019;
         public static final int btnNextLevel=0x7f060003;
         public static final int btnSelectLevel=0x7f060002;
-        public static final int btnSettings=0x7f060017;
-        public static final int btnStart=0x7f060019;
-        public static final int gameViewer=0x7f060012;
+        public static final int btnSettings=0x7f060018;
+        public static final int btnStart=0x7f06001a;
+        public static final int gameViewer=0x7f060013;
+        public static final int gridAnswers=0x7f060012;
         public static final int gridLevels=0x7f060001;
-        public static final int layoutGame=0x7f060014;
-        public static final int layoutLevelSelection=0x7f060013;
+        public static final int layoutGame=0x7f060015;
+        public static final int layoutLevelSelection=0x7f060014;
         public static final int lblAge=0x7f060009;
         public static final int lblChoosePlayer=0x7f060004;
         public static final int lblLevel=0x7f06000c;

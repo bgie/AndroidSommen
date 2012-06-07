@@ -1,5 +1,7 @@
 package les.syntra.androidsommen.logic;
 
+import java.util.ArrayList;
+
 /* Ontwerp velden:
 	> Question: string
 	> Answer: double
@@ -8,6 +10,8 @@ package les.syntra.androidsommen.logic;
 public class Exercise {
 	String question = "";
 	double answer = 0;
+	PossibleAnswers possibleAnswers;
+	
 	
 	public Exercise(String aQuestion, double aAnswer)
 	{
@@ -15,6 +19,15 @@ public class Exercise {
 		answer = aAnswer;
 	}
 	
+	public Exercise(String aQuestion, double aAnswer, PossibleAnswers aPossibleAnswers)
+	{
+		question = aQuestion;
+		answer = aAnswer;
+		possibleAnswers = aPossibleAnswers;
+	}
+	
+	
+	// GETTERS
 	public String getQuestion()
 	{
 		return question;
@@ -23,5 +36,10 @@ public class Exercise {
 	public double getAnswer()
 	{
 		return answer;
+	}
+	
+	public PossibleAnswers getPossibleAnswers()
+	{
+		return possibleAnswers;
 	}
 }

@@ -1,5 +1,6 @@
 package les.syntra.androidsommen.logic;
 
+
 /* Ontwerp velden:
 	> Time: int
 	> CurrentExercise: Exercise
@@ -25,6 +26,7 @@ public class Game {
 	Level currentLevel;
 	Score score;
 	Player player;
+	boolean gameOver;
 	
 	public Game(Player aPlayer, int aLevelIndex)
 	{
@@ -77,6 +79,11 @@ public class Game {
 		return currentExercise;
 	}
 	
+	public boolean getIsGameOver()
+	{
+		return gameOver;
+	}
+	
 	//SETTERS
 
 	
@@ -116,6 +123,7 @@ public class Game {
   	public void TimesUp()
   	{
   		time = 0;
+  		gameOver = true;
   		//-1 is gebruikt voor lege input
   		//indien dit vals antwoord ook -1 zou hebben kan je eenmalig bonuspunten verdienen door op
   		//submit te klikken op einde van spel

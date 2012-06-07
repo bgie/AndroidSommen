@@ -1,15 +1,26 @@
 package les.syntra.androidsommen.gui;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import les.syntra.androidsommen.R;
+import les.syntra.androidsommen.logic.AnswerChoice;
+import les.syntra.androidsommen.logic.Exercise;
 import les.syntra.androidsommen.logic.Game;
 import les.syntra.androidsommen.logic.Player;
+import les.syntra.androidsommen.logic.PossibleAnswers;
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
@@ -17,10 +28,13 @@ public class GameActivity extends Activity {
 	TextView lblLevel,lblTime,lblScore,lblQuestion;
     EditText txtInput;
     Button btnAnswer,btnSelectLevel,btnNextLevel;
+    GridView gridAnswers;
     boolean gameOver = false;
     boolean wasCorrectAnswer = false;
     Game activeGame;
     ViewFlipper vfGameViewer;
+    AnswerChoiceAdapter aaAnswerChoices;
+    Context cGameActivity;
     
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,6 +45,7 @@ public class GameActivity extends Activity {
         setTitle(appName + " -> " + activeScreen);
         
         vfGameViewer = (ViewFlipper)findViewById(R.id.gameViewer);
+        cGameActivity = this;
         
         //Choose level scherm
         btnSelectLevel = (Button)findViewById(R.id.btnSelectLevel);
@@ -46,7 +61,44 @@ public class GameActivity extends Activity {
         txtInput = (EditText)findViewById(R.id.txtInput);
         btnAnswer = (Button)findViewById(R.id.btnAnswer);
         btnAnswer.setOnClickListener(new Answer());
+        gridAnswers = (GridView)findViewById(R.id.gridAnswers);
         
+	}
+	
+	class AnswerChoiceAdapter extends ArrayAdapter<AnswerChoice>
+	{
+		PossibleAnswers possibleAnswers;
+		Activity activity;
+		
+		public AnswerChoiceAdapter(Activity aActivity, int textViewResourceId,
+				PossibleAnswers objects) {
+			super(aActivity, textViewResourceId, objects);
+			// TODO Auto-generated constructor stub
+			possibleAnswers = objects;
+			activity = aActivity;
+		}
+		
+		// create a new ImageView for each item referenced by the Adapter
+	    public View getView(int position, View convertView, ViewGroup parent) {
+	        Button btnAnswer = new Button(activity);
+
+	        /*if (convertView == null) {  // if it's not recycled, initialize some attributes
+	            btnAnswer = new Button(activity);
+	            btnAnswer.setLayoutParams(new GridView.LayoutParams(85, 85));
+	            btnAnswer.setPadding(8, 8, 8, 8);
+	        } else {
+	            btnAnswer = (Button) convertView;
+	        }*/
+
+	        AnswerChoice currentAnswerChoice = possibleAnswers.get(position);
+
+	        if(currentAnswerChoice != null)
+	        {
+	        	btnAnswer.setText(""+currentAnswerChoice.getAnswer());
+	        }
+
+	        return btnAnswer;
+	    }
 	}
 	
 	class SelectLevel implements OnClickListener
@@ -83,6 +135,7 @@ public class GameActivity extends Activity {
 					strInput = "-1";
 				}
 				wasCorrectAnswer = activeGame.CalculateScore(Double.parseDouble(strInput));
+				gameOver = activeGame.getIsGameOver();
 				if(wasCorrectAnswer)
 				{//Indien correct toon extra punten
 					lblScore.setText(""+activeGame.getScore() + "+" + activeGame.getLevelIndex());
@@ -94,8 +147,19 @@ public class GameActivity extends Activity {
 						lblTime.setText(""+(activeGame.getTime() + "-" + activeGame.getLevelPenaltyTime()));
 					}
 				}
+				Exercise newExercise = activeGame.getExercise();
+				lblQuestion.setText(""+newExercise.getQuestion());
+				if(!gameOver){
+					Log.d("GAMEOVER1",""+gameOver);
+					aaAnswerChoices = new AnswerChoiceAdapter(GameActivity.this, R.id.gridAnswers, newExercise.getPossibleAnswers());
+					gridAnswers.setAdapter(aaAnswerChoices);
+				}
+				else
+				{
+					Log.d("GAMEOVER2",""+gameOver);
+					gridAnswers.setAdapter(null);
+				}
 				
-				lblQuestion.setText(""+activeGame.getExercise().getQuestion());
 		}
 	}
 	
@@ -131,12 +195,14 @@ public class GameActivity extends Activity {
 			   lblTime.setText(""+intCurrentGameTime);
 			   lblScore.setText(""+activeGame.getScore());
 			   if(intCurrentGameTime <= 0)
-			   {// Einde spel
-				   gameOver = true;
+			   {// Einde spel		   
 				   //Bereken score
 				   activeGame.TimesUp();
+				   gameOver = activeGame.getIsGameOver();
 				   //Verwijder inputveld
 				   txtInput.setVisibility(View.GONE);
+				   //Maak gridAnswers leeg
+				   gridAnswers.setAdapter(null);
 				   lblQuestion.setText(""+activeGame.getExercise().getQuestion());
 			   }
 			   else
