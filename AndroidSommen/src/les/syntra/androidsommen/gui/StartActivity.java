@@ -7,6 +7,7 @@ import org.json.JSONException;
 import les.syntra.androidsommen.R;
 import les.syntra.androidsommen.logic.Database;
 import les.syntra.androidsommen.logic.Player;
+import les.syntra.androidsommen.logic.Score;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -88,11 +89,14 @@ public class StartActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				try {					
-					Log.d("Database", "Database heeft " + database.getPlayers().size());
-					Player p = new Player("Fons",34);
-					database.getPlayers().add(p);
-					database.saveAll();					
+				try {										
+					database.getPlayers().add(new Player("Fons",34));
+					database.getPlayers().add(new Player("Mimi",58));
+					database.getHighScores().add(new Score("Mimi",0,1000000));
+					database.getHighScores().add(new Score("Fons",0,2000000));
+					database.getHighScores().add(new Score("Brecht",0,3000000));
+					database.saveAll();	
+					Log.d("Database", "Database heeft " + database.getPlayers().size() + " spelers.");
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
