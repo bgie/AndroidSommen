@@ -14,11 +14,19 @@ import org.json.JSONException;
 	- GetTopScoresByPlayer(player, amount)
  */
 public class HighScores extends ArrayList<Score> {
+	
+	// Constructor uit JSON object.
 	public HighScores(JSONArray json) throws JSONException {
 		for (int i = 0; i < json.length(); i++)
 			add(new Score(json.getJSONObject(i)));	
 	}
-	
+
+	// Constructor nieuwe, lege lijst.
+	public HighScores() {
+
+	}
+
+	// Converteer naar JSON object
 	public JSONArray toJSON() throws JSONException {
 		JSONArray json = new JSONArray();
 		for(Score s : this)

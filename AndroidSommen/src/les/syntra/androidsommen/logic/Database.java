@@ -10,6 +10,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Context;
+
 public class Database {
 	static private final String file = "data.json";
 	static private final String playersTag = "players";
@@ -17,22 +19,24 @@ public class Database {
 	
 	private ArrayList<Player> players = new ArrayList<Player>();
 	private HighScores highScores;	
+	private Context context;
 	
 	// Singleton instance - de enige echte database
 	private static Database _instance = null;
 	
 	// Singleton factory method om de enige echte database op te vragen.
-	public static Database instance() throws JSONException, IOException {
+	public static Database instance(Context ctx) throws JSONException, IOException {
 		if(_instance == null)
-			_instance = new Database();
+			_instance = new Database(ctx);
 		return _instance;
 	}
 	
 	// Constructor leest alle data.
-	public Database() throws JSONException, IOException {
+	public Database(Context ctx) throws JSONException, IOException {
+		context = ctx;
 		String json = "";
 		try {
-			FileInputStream fis = new FileInputStream(file);
+			FileInputStream fis = ctx.openFileInput(file);
 			StringBuffer content = new StringBuffer("");
 
 			byte[] buffer = new byte[1024];
@@ -43,15 +47,19 @@ public class Database {
 			json = content.toString();
 		} catch(FileNotFoundException e) {			
 		}
+				
+		if( json.length() > 0 ) { 
+			JSONObject object = new JSONObject(json);
 		
-		JSONObject object = new JSONObject(json);
+			highScores = new HighScores(object.getJSONArray(highScoresTag));
 		
-		highScores = new HighScores(object.getJSONArray(highScoresTag));
-		
-		JSONArray parray = object.getJSONArray(playersTag);
-		for(int i = 0; i < parray.length(); i++)
-			players.add(new Player(parray.getJSONObject(i)));
-		
+			JSONArray parray = object.getJSONArray(playersTag);
+			for(int i = 0; i < parray.length(); i++)
+				players.add(new Player(parray.getJSONObject(i)));
+		} else
+		{
+			highScores = new HighScores();
+		}
 	}
 	
 	// Slaat alles op
@@ -66,7 +74,7 @@ public class Database {
 		
 		String json = object.toString();
 		
-		FileOutputStream fos = new FileOutputStream(file);
+		FileOutputStream fos = context.openFileOutput(file,Context.MODE_PRIVATE);
 		fos.write(json.getBytes());
 		fos.close();
 	}
