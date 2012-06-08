@@ -19,7 +19,6 @@
 	<string name="txtBtnHighScores">Highscores</string>
 	<string name="txtBtnStart">Start Game</string>
 	<string name="txtBtnCreateNewPlayer">Create new player</string>
-	<string name="txtBtnSelectLevel">Select level</string>
 	<string name="txtBtnNextLevel">Next level</string>
 	
 	<string name="txtLogo">MathDroid Logo</string>

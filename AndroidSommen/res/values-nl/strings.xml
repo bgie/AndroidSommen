@@ -19,7 +19,6 @@
 	<string name="txtBtnHighScores">Top Scores</string>
 	<string name="txtBtnStart">Start Spel</string>
 	<string name="txtBtnCreateNewPlayer">Maak nieuwe speler</string>
-	<string name="txtBtnSelectLevel">Kies level</string>
 	<string name="txtBtnNextLevel">Volgend level</string>
 	
 	<string name="txtLogo">MathDroid Logo</string>

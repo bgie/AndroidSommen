@@ -20,34 +20,33 @@ public final class R {
         public static final int ic_launcher_red_cube_icon=0x7f020001;
     }
     public static final class id {
-        public static final int appLogo=0x7f060016;
-        public static final int btnAnswer=0x7f060011;
-        public static final int btnChoosePlayer=0x7f060017;
-        public static final int btnCreatePlayer=0x7f06000b;
-        public static final int btnDebug=0x7f06001b;
-        public static final int btnHighScores=0x7f060019;
-        public static final int btnNextLevel=0x7f060003;
-        public static final int btnSelectLevel=0x7f060002;
-        public static final int btnSettings=0x7f060018;
-        public static final int btnStart=0x7f06001a;
-        public static final int gameViewer=0x7f060013;
-        public static final int gridAnswers=0x7f060012;
+        public static final int appLogo=0x7f060015;
+        public static final int btnAnswer=0x7f060010;
+        public static final int btnChoosePlayer=0x7f060016;
+        public static final int btnCreatePlayer=0x7f06000a;
+        public static final int btnDebug=0x7f06001a;
+        public static final int btnHighScores=0x7f060018;
+        public static final int btnNextLevel=0x7f060002;
+        public static final int btnSettings=0x7f060017;
+        public static final int btnStart=0x7f060019;
+        public static final int gameViewer=0x7f060012;
+        public static final int gridAnswers=0x7f060011;
         public static final int gridLevels=0x7f060001;
-        public static final int layoutGame=0x7f060015;
-        public static final int layoutLevelSelection=0x7f060014;
-        public static final int lblAge=0x7f060009;
-        public static final int lblChoosePlayer=0x7f060004;
-        public static final int lblLevel=0x7f06000c;
+        public static final int layoutGame=0x7f060014;
+        public static final int layoutLevelSelection=0x7f060013;
+        public static final int lblAge=0x7f060008;
+        public static final int lblChoosePlayer=0x7f060003;
+        public static final int lblLevel=0x7f06000b;
         public static final int lblLevelSelection=0x7f060000;
-        public static final int lblName=0x7f060007;
-        public static final int lblNewPlayer=0x7f060006;
-        public static final int lblQuestion=0x7f06000f;
-        public static final int lblScore=0x7f06000e;
-        public static final int lblTime=0x7f06000d;
-        public static final int lstPlayers=0x7f060005;
-        public static final int txtAge=0x7f06000a;
-        public static final int txtInput=0x7f060010;
-        public static final int txtName=0x7f060008;
+        public static final int lblName=0x7f060006;
+        public static final int lblNewPlayer=0x7f060005;
+        public static final int lblQuestion=0x7f06000e;
+        public static final int lblScore=0x7f06000d;
+        public static final int lblTime=0x7f06000c;
+        public static final int lstPlayers=0x7f060004;
+        public static final int txtAge=0x7f060009;
+        public static final int txtInput=0x7f06000f;
+        public static final int txtName=0x7f060007;
     }
     public static final class layout {
         public static final int chooselevel=0x7f030000;
@@ -65,8 +64,7 @@ public final class R {
         public static final int txtBtnChoosePlayer=0x7f05000c;
         public static final int txtBtnCreateNewPlayer=0x7f050010;
         public static final int txtBtnHighScores=0x7f05000e;
-        public static final int txtBtnNextLevel=0x7f050012;
-        public static final int txtBtnSelectLevel=0x7f050011;
+        public static final int txtBtnNextLevel=0x7f050011;
         public static final int txtBtnSettings=0x7f05000d;
         public static final int txtBtnStart=0x7f05000f;
         public static final int txtLblAge=0x7f050006;
@@ -78,6 +76,6 @@ public final class R {
         public static final int txtLblQuestion=0x7f050005;
         public static final int txtLblScore=0x7f050002;
         public static final int txtLblTime=0x7f050004;
-        public static final int txtLogo=0x7f050013;
+        public static final int txtLogo=0x7f050012;
     }
 }

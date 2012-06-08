@@ -7,10 +7,12 @@ import les.syntra.androidsommen.R;
 import les.syntra.androidsommen.logic.AnswerChoice;
 import les.syntra.androidsommen.logic.Exercise;
 import les.syntra.androidsommen.logic.Game;
+import les.syntra.androidsommen.logic.Level;
 import les.syntra.androidsommen.logic.Player;
 import les.syntra.androidsommen.logic.PossibleAnswers;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -27,14 +29,15 @@ import android.widget.ViewFlipper;
 public class GameActivity extends Activity {
 	TextView lblLevel,lblTime,lblScore,lblQuestion;
     EditText txtInput;
-    Button btnAnswer,btnSelectLevel,btnNextLevel;
-    GridView gridAnswers;
+    Button btnAnswer,btnNextLevel;
+    GridView gridLevels, gridAnswers;
     boolean gameOver = false;
     boolean wasCorrectAnswer = false;
     Game activeGame;
     ViewFlipper vfGameViewer;
+    LevelChoiceAdapter aaLevelChoices;
     AnswerChoiceAdapter aaAnswerChoices;
-    Context cGameActivity;
+    //Context cGameActivity;
     
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,13 +48,21 @@ public class GameActivity extends Activity {
         setTitle(appName + " -> " + activeScreen);
         
         vfGameViewer = (ViewFlipper)findViewById(R.id.gameViewer);
-        cGameActivity = this;
+        //cGameActivity = this;
         
         //Choose level scherm
-        btnSelectLevel = (Button)findViewById(R.id.btnSelectLevel);
-        btnSelectLevel.setOnClickListener(new SelectLevel());
         btnNextLevel = (Button)findViewById(R.id.btnNextLevel);
         btnNextLevel.setOnClickListener(new NextLevel());
+        gridLevels = (GridView)findViewById(R.id.gridLevels);
+        ArrayList<Level> levelArrayList = new ArrayList<Level>();
+        //TODO tijdelijk level generatie
+        for(int ii = 1;ii<=11;ii++)
+		{
+        	levelArrayList.add(new Level(ii));
+		}
+        
+        aaLevelChoices = new LevelChoiceAdapter(GameActivity.this, R.id.gridLevels, levelArrayList);
+		gridLevels.setAdapter(aaLevelChoices);
         
         //Game scherm
         lblLevel = (TextView)findViewById(R.id.lblLevel);
@@ -60,11 +71,50 @@ public class GameActivity extends Activity {
         lblQuestion = (TextView)findViewById(R.id.lblQuestion);
         txtInput = (EditText)findViewById(R.id.txtInput);
         btnAnswer = (Button)findViewById(R.id.btnAnswer);
-        btnAnswer.setOnClickListener(new Answer());
+        btnAnswer.setOnClickListener(new AnswerTxt());
         gridAnswers = (GridView)findViewById(R.id.gridAnswers);
         
 	}
 	
+	/**
+	 * Adapter om gridview met mogelijke levels te vullen
+	 * @author Brecht Jr.
+	 *
+	 */
+	class LevelChoiceAdapter extends ArrayAdapter<Level>
+	{
+		ArrayList<Level> levels;
+		Activity activity;
+		
+		public LevelChoiceAdapter(Activity aActivity, int textViewResourceId,
+				ArrayList<Level> objects) {
+			super(aActivity, textViewResourceId, objects);
+			// TODO Auto-generated constructor stub
+			levels = objects;
+			activity = aActivity;
+		}
+		
+		// create a new ImageView for each item referenced by the Adapter
+	    public View getView(int position, View convertView, ViewGroup parent) {
+	        Button btnLevel = new Button(activity);
+
+	        Level currentLevelChoice = levels.get(position);
+
+	        if(currentLevelChoice != null)
+	        {
+	        	btnLevel.setText(""+currentLevelChoice.getLevelIndex());
+	        	btnLevel.setOnClickListener(new SelectLevel());
+	        }
+
+	        return btnLevel;
+	    }
+	}
+	
+	/**
+	 * Adapter om gridview met mogelijke antwoorden te vullen
+	 * @author Brecht Jr.
+	 *
+	 */
 	class AnswerChoiceAdapter extends ArrayAdapter<AnswerChoice>
 	{
 		PossibleAnswers possibleAnswers;
@@ -95,23 +145,36 @@ public class GameActivity extends Activity {
 	        if(currentAnswerChoice != null)
 	        {
 	        	btnAnswer.setText(""+currentAnswerChoice.getAnswer());
+	        	btnAnswer.setOnClickListener(new AnswerButton());
 	        }
 
 	        return btnAnswer;
 	    }
 	}
 	
+	/**
+	 * 
+	 * @author Brecht Jr.
+	 *
+	 */
 	class SelectLevel implements OnClickListener
 	{
 		@Override
 		public void onClick(View v) {
+			Button b = (Button)v;
+		    String buttonText = b.getText().toString();
 			//Voorbeeld van test game met speler(naam:test,leeftijd:34) en op level 1
-			activeGame = new Game(new Player("test",34),1);
+			activeGame = new Game(new Player("test",34),Integer.parseInt(buttonText));
 			vfGameViewer.showNext();
 			StartTimer();
 		}
 	}
 	
+	/**
+	 * Start hoogst vrijgespeeld level
+	 * @author Brecht Jr.
+	 *
+	 */
 	class NextLevel implements OnClickListener
 	{
 		@Override
@@ -123,7 +186,7 @@ public class GameActivity extends Activity {
 		}
 	}
 	
-	class Answer implements OnClickListener
+	class AnswerTxt implements OnClickListener
 	{
 		@Override
 		public void onClick(View v) {
@@ -134,32 +197,47 @@ public class GameActivity extends Activity {
 				{//Indien leeg
 					strInput = "-1";
 				}
-				wasCorrectAnswer = activeGame.CalculateScore(Double.parseDouble(strInput));
-				gameOver = activeGame.getIsGameOver();
-				if(wasCorrectAnswer)
-				{//Indien correct toon extra punten
-					lblScore.setText(""+activeGame.getScore() + "+" + activeGame.getLevelIndex());
-				}
-				else
-				{
-					if(!gameOver)
-					{//Indien niet einde spel en toch fout toon straftijd
-						lblTime.setText(""+(activeGame.getTime() + "-" + activeGame.getLevelPenaltyTime()));
-					}
-				}
-				Exercise newExercise = activeGame.getExercise();
-				lblQuestion.setText(""+newExercise.getQuestion());
-				if(!gameOver){
-					Log.d("GAMEOVER1",""+gameOver);
-					aaAnswerChoices = new AnswerChoiceAdapter(GameActivity.this, R.id.gridAnswers, newExercise.getPossibleAnswers());
-					gridAnswers.setAdapter(aaAnswerChoices);
-				}
-				else
-				{
-					Log.d("GAMEOVER2",""+gameOver);
-					gridAnswers.setAdapter(null);
-				}
-				
+				checkAnswer(strInput);		
+		}
+	}
+	
+	class AnswerButton implements OnClickListener
+	{
+		@Override
+		public void onClick(View v) {
+			Button b = (Button)v;
+		    String buttonText = b.getText().toString();
+
+			checkAnswer(buttonText);		
+		}
+	}
+	
+	public void checkAnswer(String strInput)
+	{
+		wasCorrectAnswer = activeGame.CalculateScore(Double.parseDouble(strInput));
+		gameOver = activeGame.getIsGameOver();
+		if(wasCorrectAnswer)
+		{//Indien correct toon extra punten
+			lblScore.setText(""+activeGame.getScore() + "+" + activeGame.getLevelIndex());
+		}
+		else
+		{
+			if(!gameOver)
+			{//Indien niet einde spel en toch fout toon straftijd
+				lblTime.setText(""+(activeGame.getTime() + "-" + activeGame.getLevelPenaltyTime()));
+			}
+		}
+		Exercise newExercise = activeGame.getExercise();
+		lblQuestion.setText(""+newExercise.getQuestion());
+		if(!gameOver){
+			Log.d("GAMEOVER1",""+gameOver);
+			aaAnswerChoices = new AnswerChoiceAdapter(GameActivity.this, R.id.gridAnswers, newExercise.getPossibleAnswers());
+			gridAnswers.setAdapter(aaAnswerChoices);
+		}
+		else
+		{
+			Log.d("GAMEOVER2",""+gameOver);
+			gridAnswers.setAdapter(null);
 		}
 	}
 	
@@ -173,7 +251,10 @@ public class GameActivity extends Activity {
         lblLevel.setText("Level " + activeGame.getLevelIndex());
         lblTime.setText(""+activeGame.getTime());
         lblScore.setText(""+activeGame.getScore());
-        lblQuestion.setText(""+activeGame.getExercise().getQuestion());
+        Exercise newExercise = activeGame.getExercise();
+		lblQuestion.setText(""+newExercise.getQuestion());
+        aaAnswerChoices = new AnswerChoiceAdapter(GameActivity.this, R.id.gridAnswers, newExercise.getPossibleAnswers());
+		gridAnswers.setAdapter(aaAnswerChoices);
 		
 		ResumeTimer();
 	}

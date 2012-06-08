@@ -89,7 +89,7 @@ public class Game {
 	
 	//METHODS
 	public int UpdateTime(int aDeltaTime)
-	{
+	{//TODO hier gameover toevoegen
 		time -= aDeltaTime;
 		if(time < 0){
 			time = 0;
