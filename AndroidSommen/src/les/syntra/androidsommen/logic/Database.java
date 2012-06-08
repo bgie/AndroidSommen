@@ -10,7 +10,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public abstract class Database {
+public class Database {
 	static private final String file = "data.json";
 	static private final String playersTag = "players";
 	static private final String highScoresTag = "highScores";
@@ -18,6 +18,17 @@ public abstract class Database {
 	private ArrayList<Player> players = new ArrayList<Player>();
 	private HighScores highScores;	
 	
+	// Singleton instance - de enige echte database
+	private static Database _instance = null;
+	
+	// Singleton factory method om de enige echte database op te vragen.
+	public static Database instance() throws JSONException, IOException {
+		if(_instance == null)
+			_instance = new Database();
+		return _instance;
+	}
+	
+	// Constructor leest alle data.
 	public Database() throws JSONException, IOException {
 		String json = "";
 		try {
@@ -43,6 +54,7 @@ public abstract class Database {
 		
 	}
 	
+	// Slaat alles op
 	public void saveAll() throws JSONException, IOException {
 		JSONObject object = new JSONObject();
 		object.put(highScoresTag, highScores.toJSON());
@@ -59,10 +71,12 @@ public abstract class Database {
 		fos.close();
 	}
 	
+	// Geeft de lijst met players (read-write access)
 	public ArrayList<Player> getPlayers() {
 		return players;
 	}
 	
+	// Geeft de lijst met highscores (read-write access)
 	public HighScores getHighScores() {
 		return highScores;
 	}
