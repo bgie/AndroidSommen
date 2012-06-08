@@ -6,6 +6,8 @@ import org.json.JSONException;
 
 import les.syntra.androidsommen.R;
 import les.syntra.androidsommen.logic.Database;
+import les.syntra.androidsommen.logic.Player;
+import les.syntra.androidsommen.logic.Score;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,10 +20,23 @@ import android.widget.ImageView;
 
 public class StartActivity extends Activity {
 
+	Database database = null;;
+	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.start);
+        
+        try {
+			database = Database.instance(this);
+		} catch (JSONException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+        
         ImageView appLogo= (ImageView)findViewById(R.id.appLogo);
         Animation myFadeInAnimation = AnimationUtils.loadAnimation(this, R.anim.fadein);
         appLogo.startAnimation(myFadeInAnimation);
@@ -74,9 +89,22 @@ public class StartActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				try {
-					Database database = Database.instance();
-					Log.d("Database", "Test van debug knop.");
+				try {		
+					Player p;
+					database.getPlayers().add(new Player("Fons",34));
+					database.getPlayers().add(new Player("Mimi",58));
+					database.getPlayers().add(p = new Player("Brecht",32));
+					database.getHighScores().add(new Score("Mimi",0,1000000));
+					database.getHighScores().add(new Score("Fons",0,2000000));
+					database.getHighScores().add(new Score("Brecht",0,3000000));
+					database.setActivePlayer(p);
+					database.saveAll();	
+					Log.d("Database", "Database heeft " + database.getPlayers().size() + " spelers.");
+					Log.d("Database", "Database heeft " + database.getHighScores().size() + " scores.");
+					if(database.getActivePlayer() == null)
+						Log.d("Database", "Actieve speler is er niet." );
+					else
+						Log.d("Database", "Actieve speler is " +  database.getActivePlayer().getPlayerName() );
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
