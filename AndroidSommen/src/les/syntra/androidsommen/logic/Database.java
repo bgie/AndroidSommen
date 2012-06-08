@@ -22,7 +22,7 @@ public class Database {
 	private static Database _instance = null;
 	
 	// Singleton factory method om de enige echte database op te vragen.
-	static Database instance() throws JSONException, IOException {
+	public static Database instance() throws JSONException, IOException {
 		if(_instance == null)
 			_instance = new Database();
 		return _instance;
