@@ -168,13 +168,14 @@ public class GameActivity extends Activity {
 
 	private void StartTimer()
 	{// Tijd begint te lopen
-		ResumeTimer();
-        
-        //Game GUI
+		
+		//Game GUI
         lblLevel.setText("Level " + activeGame.getLevelIndex());
         lblTime.setText(""+activeGame.getTime());
         lblScore.setText(""+activeGame.getScore());
         lblQuestion.setText(""+activeGame.getExercise().getQuestion());
+		
+		ResumeTimer();
 	}
 	
 	private void ResumeTimer()
@@ -194,6 +195,7 @@ public class GameActivity extends Activity {
 			   int intCurrentGameTime = activeGame.UpdateTime(1);
 			   lblTime.setText(""+intCurrentGameTime);
 			   lblScore.setText(""+activeGame.getScore());
+			   // TODO Dit aanpassen naar game class en hier getisgameover
 			   if(intCurrentGameTime <= 0)
 			   {// Einde spel		   
 				   //Bereken score
