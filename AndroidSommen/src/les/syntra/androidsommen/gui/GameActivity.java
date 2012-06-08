@@ -1,10 +1,14 @@
 package les.syntra.androidsommen.gui;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONException;
+
 import les.syntra.androidsommen.R;
 import les.syntra.androidsommen.logic.AnswerChoice;
+import les.syntra.androidsommen.logic.Database;
 import les.syntra.androidsommen.logic.Exercise;
 import les.syntra.androidsommen.logic.Game;
 import les.syntra.androidsommen.logic.Level;
@@ -27,6 +31,8 @@ import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 public class GameActivity extends Activity {
+	Database database = null;
+	
 	TextView lblLevel,lblTime,lblScore,lblQuestion;
     EditText txtInput;
     Button btnAnswer,btnNextLevel;
@@ -37,7 +43,6 @@ public class GameActivity extends Activity {
     ViewFlipper vfGameViewer;
     LevelChoiceAdapter aaLevelChoices;
     AnswerChoiceAdapter aaAnswerChoices;
-    //Context cGameActivity;
     
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,19 +52,34 @@ public class GameActivity extends Activity {
         String activeScreen = getString(R.string.txtBtnStart);
         setTitle(appName + " -> " + activeScreen);
         
+        try {
+			database = Database.instance(this);
+		} catch (JSONException e1) {
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+        
         vfGameViewer = (ViewFlipper)findViewById(R.id.gameViewer);
-        //cGameActivity = this;
         
         //Choose level scherm
         btnNextLevel = (Button)findViewById(R.id.btnNextLevel);
         btnNextLevel.setOnClickListener(new NextLevel());
         gridLevels = (GridView)findViewById(R.id.gridLevels);
         ArrayList<Level> levelArrayList = new ArrayList<Level>();
-        //TODO tijdelijk level generatie
-        for(int ii = 1;ii<=11;ii++)
-		{
-        	levelArrayList.add(new Level(ii));
-		}
+        // level generatie
+        if(database.getActivePlayer() != null)
+        {
+        	for(int ii = 1;ii<=database.getActivePlayer().getUnlockedLevelIndex();ii++)
+        	{
+        		levelArrayList.add(new Level(ii));
+        	}
+        }
+        else
+        {
+        	levelArrayList.add(new Level(1));
+        }
+        
         
         aaLevelChoices = new LevelChoiceAdapter(GameActivity.this, R.id.gridLevels, levelArrayList);
 		gridLevels.setAdapter(aaLevelChoices);
@@ -89,7 +109,6 @@ public class GameActivity extends Activity {
 		public LevelChoiceAdapter(Activity aActivity, int textViewResourceId,
 				ArrayList<Level> objects) {
 			super(aActivity, textViewResourceId, objects);
-			// TODO Auto-generated constructor stub
 			levels = objects;
 			activity = aActivity;
 		}
@@ -123,7 +142,6 @@ public class GameActivity extends Activity {
 		public AnswerChoiceAdapter(Activity aActivity, int textViewResourceId,
 				PossibleAnswers objects) {
 			super(aActivity, textViewResourceId, objects);
-			// TODO Auto-generated constructor stub
 			possibleAnswers = objects;
 			activity = aActivity;
 		}
@@ -131,14 +149,6 @@ public class GameActivity extends Activity {
 		// create a new ImageView for each item referenced by the Adapter
 	    public View getView(int position, View convertView, ViewGroup parent) {
 	        Button btnAnswer = new Button(activity);
-
-	        /*if (convertView == null) {  // if it's not recycled, initialize some attributes
-	            btnAnswer = new Button(activity);
-	            btnAnswer.setLayoutParams(new GridView.LayoutParams(85, 85));
-	            btnAnswer.setPadding(8, 8, 8, 8);
-	        } else {
-	            btnAnswer = (Button) convertView;
-	        }*/
 
 	        AnswerChoice currentAnswerChoice = possibleAnswers.get(position);
 
@@ -163,7 +173,7 @@ public class GameActivity extends Activity {
 		public void onClick(View v) {
 			Button b = (Button)v;
 		    String buttonText = b.getText().toString();
-			//Voorbeeld van test game met speler(naam:test,leeftijd:34) en op level 1
+			//Voorbeeld van test game met speler(naam:test,leeftijd:34) en gekozen level
 			activeGame = new Game(new Player("test",34),Integer.parseInt(buttonText));
 			vfGameViewer.showNext();
 			StartTimer();
@@ -186,6 +196,11 @@ public class GameActivity extends Activity {
 		}
 	}
 	
+	/**
+	 * Controleer antwoord via text input
+	 * @author Brecht Jr.
+	 *
+	 */
 	class AnswerTxt implements OnClickListener
 	{
 		@Override
@@ -201,6 +216,11 @@ public class GameActivity extends Activity {
 		}
 	}
 	
+	/**
+	 * Controleer antwoord via knop
+	 * @author Brecht Jr.
+	 *
+	 */
 	class AnswerButton implements OnClickListener
 	{
 		@Override
@@ -212,6 +232,11 @@ public class GameActivity extends Activity {
 		}
 	}
 	
+	/**
+	 * Antwoord check functie
+	 * @author Brecht Jr.
+	 *
+	 */
 	public void checkAnswer(String strInput)
 	{
 		wasCorrectAnswer = activeGame.CalculateScore(Double.parseDouble(strInput));

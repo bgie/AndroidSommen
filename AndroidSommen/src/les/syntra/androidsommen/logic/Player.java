@@ -14,7 +14,7 @@ import org.json.JSONObject;
 public class Player {
 	private String name = "";
 	private int age = 0;
-	private int unlockedLevelIndex = 0;
+	private int unlockedLevelIndex = 1;
 	private long totalTimePlayed = 0;
 	
 	public Player(String aName, int aAge, int aULI, int aTTP)
@@ -37,6 +37,8 @@ public class Player {
 		totalTimePlayed = json.getLong(totalTimePlayedTag);
 	}
 	
+	
+	//GETTERS
 	public String getPlayerName()
 	{
 		return name;
@@ -45,6 +47,23 @@ public class Player {
 	public int getAge()
 	{
 		return age;
+	}
+	
+	public int getUnlockedLevelIndex()
+	{
+		return unlockedLevelIndex;
+	}
+	
+	//SETTERS
+	
+	//METHODS
+	public void LevelCompleted(int aCompletedLevel, long aTimePlayed)
+	{
+		totalTimePlayed += aTimePlayed;
+		if(aCompletedLevel > unlockedLevelIndex)
+		{
+			unlockedLevelIndex = aCompletedLevel;
+		}
 	}
 	
 	public JSONObject toJSON() throws JSONException {
