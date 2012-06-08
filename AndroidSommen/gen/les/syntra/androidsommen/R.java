@@ -24,6 +24,7 @@ public final class R {
         public static final int btnAnswer=0x7f060011;
         public static final int btnChoosePlayer=0x7f060017;
         public static final int btnCreatePlayer=0x7f06000b;
+        public static final int btnDebug=0x7f06001b;
         public static final int btnHighScores=0x7f060019;
         public static final int btnNextLevel=0x7f060003;
         public static final int btnSelectLevel=0x7f060002;

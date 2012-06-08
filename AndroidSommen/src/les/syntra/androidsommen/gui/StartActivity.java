@@ -4,6 +4,7 @@ import les.syntra.androidsommen.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -60,6 +61,15 @@ public class StartActivity extends Activity {
 				// TODO Auto-generated method stub
 				Intent i=new Intent(StartActivity.this,GameActivity.class);
 				startActivity(i);
+			}
+		});
+        
+        Button btnDebug = (Button)findViewById(R.id.btnDebug);
+        btnDebug.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Log.d("Database", "Test van debug knop.");
 			}
 		});
 	}
