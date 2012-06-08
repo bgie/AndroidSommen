@@ -20,6 +20,7 @@ public class Level {
 	int correctAnswersNeeded = 1;
 	int minTotal = 0;
 	int maxTotal = 100;
+	int totalAnswers = 1;
 	String operands = "+-*/";
 	
 	public Level(int aLevelIndex)
@@ -68,6 +69,7 @@ public class Level {
 		default:
 			setLevelSettings("+-*/", 20, 999999, 0, 30);
 		}
+		totalAnswers = levelIndex + 1;
 	}
 	
 	//GETTERS
@@ -178,7 +180,7 @@ public class Level {
 		
 		//TIJDELIJK antwoorden genereren
 		possibleAnswers.add(new AnswerChoice(result));
-		for(int ii = 0;ii<5;ii++)
+		for(int ii = 0;ii<totalAnswers;ii++)
 		{
 			possibleAnswers.add(new AnswerChoice((int) Math.floor(Math.random() * (result*2)-1)+1));
 		}
