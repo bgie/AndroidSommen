@@ -52,12 +52,11 @@ Applicatie start
 ==============================
 
 Opmerkingen:
--Waar worden mogelijke antwoordmogelijkheden gegenereerd? Level? En nieuwe klasse (AnswerChoice) nodig?
-
+-activeplayer wordt enkel gezet tijdens debug --> blijft dus niet opgeslaan in db (enkel tijdens sessie)
+-saveAll lijkt niet te werken met progressie van unlockedlevel?
 
 ->VOORSTELLEN:
 	-Brecht Sr. doet xml afhandeling (volledig highscore en score + overige opslag) 
-				+ eventueel highscore scherm
 	-Brecht Jr. doet level/opgave en mogelijkheden + eventueel game scherm
 	-Patrick en Marco doen: basis schermen opbouw (prototype)-> zodoende we kunnen testen 
 							+ Player + algemene flow + eventueel settings scherm
@@ -65,15 +64,14 @@ Opmerkingen:
 TODO:
 - generateExercise is bugged voor /(te grote getallen) en mss ook *(te klein) -> BRECHT Jr.
 - generatePossibleAnswers -> Jr.
-- leveloverzichtscherm -> Jr. //patrick of marco?
 - progressie toevoegen aan game -> volgend level -> Jr.? (gameover -> verwijder antwoord en voeg toe
 				validatie geslaagd -> unlocklevel + ga terug lvl keuze scherm met nieuw level unlocked)
 				
 				>>opzoeken arraylist extends constructor (possibleanswers)
 				
 - double tap game --> pause en settings scherm (optioneel) -> Jr.
-- player aanmaken en selecteren -> patrick of Sr. ?
-- highscoresscherm -> patrick of Sr. of marco?
+- player aanmaken en selecteren -> patrick
+- highscoresscherm -> marco
 - settingsscherm -> marco? -> misschien tijdelijk "credits tekst"?
 - styles -> marco?
 
@@ -81,6 +79,7 @@ DONE:
 - Jr.
 	-> timer/loop toevoegen aan game
 	-> tijd berekening en score (game class)
+	-> leveloverzichtscherm
 - Sr.
 
 - Patrick
@@ -163,6 +162,7 @@ RESOURCES:
 -http://pivotal.github.com/robolectric/index.html
 -http://www.youtube.com/watch?v=T6FWL877txw (unit testing android)
 -http://developer.android.com/reference/android/view/ViewGroup.html
+-http://karanar.net/?p=25 (sound)
 
 Voor gridview:
 -http://stackoverflow.com/questions/775188/add-an-array-of-buttons-to-a-gridview-in-an-android-application

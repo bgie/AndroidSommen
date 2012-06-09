@@ -93,7 +93,7 @@ public class StartActivity extends Activity {
 					Player p;
 					database.getPlayers().add(new Player("Fons",34));
 					database.getPlayers().add(new Player("Mimi",58));
-					database.getPlayers().add(p = new Player("Brecht",32));
+					database.getPlayers().add(p = new Player("Brecht",32,3,0));
 					database.getHighScores().add(new Score("Mimi",0,1000000));
 					database.getHighScores().add(new Score("Fons",0,2000000));
 					database.getHighScores().add(new Score("Brecht",0,3000000));

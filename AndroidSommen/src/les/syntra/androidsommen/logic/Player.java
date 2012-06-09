@@ -3,6 +3,8 @@ package les.syntra.androidsommen.logic;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.util.Log;
+
 /* Ontwerp velden:
 	> Name: string
 	> Age: int
@@ -59,11 +61,19 @@ public class Player {
 	//METHODS
 	public void LevelCompleted(int aCompletedLevel, long aTimePlayed)
 	{
-		totalTimePlayed += aTimePlayed;
-		if(aCompletedLevel > unlockedLevelIndex)
+		LevelPlayed(aTimePlayed);
+		if(aCompletedLevel >= unlockedLevelIndex)
 		{
 			unlockedLevelIndex = aCompletedLevel;
+			Log.d("PLAYER","completed: YES!");
 		}
+		Log.d("PLAYER","completed: "+aCompletedLevel);
+		Log.d("PLAYER","unlocklvl: "+unlockedLevelIndex);
+	}
+	
+	public void LevelPlayed(long aTimePlayed)
+	{// kan ook gebruikt worden indien niet een nieuw level behaald wordt
+		totalTimePlayed += aTimePlayed;
 	}
 	
 	public JSONObject toJSON() throws JSONException {

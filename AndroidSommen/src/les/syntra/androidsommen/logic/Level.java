@@ -21,6 +21,8 @@ public class Level {
 	int minTotal = 0;
 	int maxTotal = 100;
 	int totalAnswers = 1;
+	int totalCorrectAnswers = 1;
+	boolean levelPassed = false;
 	String operands = "+-*/";
 	
 	public Level(int aLevelIndex)
@@ -73,6 +75,11 @@ public class Level {
 	}
 	
 	//GETTERS
+	public int getLevelIndex()
+	{
+		return levelIndex;
+	}
+	
 	public int getMaxTime()
 	{
 		return maxTime;
@@ -83,9 +90,14 @@ public class Level {
 		return penaltyTime;
 	}
 	
-	public int getLevelIndex()
+	public int getCorrectAnswersNeeded()
 	{
-		return levelIndex;
+		return correctAnswersNeeded;
+	}
+	
+	public int getTotalCorrectAnswers()
+	{
+		return totalCorrectAnswers;
 	}
 	
 	//SETTERS
@@ -148,6 +160,7 @@ public class Level {
 			else
 			{// Operand = *
 				//result als tijdelijke "seed"
+				//TODO verbeter algorithme voor opgave generator
 				digit1 = (int) Math.floor(Math.random() * Math.sqrt(result));
 				digit2 = (int) Math.floor(Math.random() * Math.sqrt(result));
 				result = digit1 * digit2;
@@ -168,6 +181,7 @@ public class Level {
 			}
 			else
 			{// Operand = /
+				//TODO verbeter algorithme voor opgave generator
 				digit2 = (int) Math.floor(Math.random() * Math.sqrt(maxTotal-minTotal-1))+minTotal+1;
 				result = (int) Math.floor(Math.random() * Math.sqrt(maxTotal-minTotal))+minTotal;
 				digit1 = result*digit2;
@@ -176,16 +190,22 @@ public class Level {
 			}
 		}
 		
-		//Exercise exercise =  new Exercise(question, answer);
-		
-		//TIJDELIJK antwoorden genereren
+		//TODO verbeter generator vanantwoorden
 		possibleAnswers.add(new AnswerChoice(result));
 		for(int ii = 0;ii<totalAnswers;ii++)
 		{
-			possibleAnswers.add(new AnswerChoice((int) Math.floor(Math.random() * (result*2)-1)+1));
+			possibleAnswers.add(new AnswerChoice((int) Math.round(Math.random() * (result*2)-1)+1));
 		}
 		possibleAnswers.Shuffle();
 		Exercise exercise =  new Exercise(question, answer, possibleAnswers);
 		return exercise;
+	}
+	
+	/**
+	 * Antwoord was correct, aantal correcte antwoorden wordt verhoogd met 1
+	 */
+	public void AnswerWasCorrect()
+	{
+		totalCorrectAnswers += 1;
 	}
 }

@@ -1,5 +1,12 @@
 package les.syntra.androidsommen.logic;
 
+import java.io.IOException;
+import java.util.Calendar;
+
+import org.json.JSONException;
+
+import android.util.Log;
+
 
 /* Ontwerp velden:
 	> Time: int
@@ -10,15 +17,10 @@ package les.syntra.androidsommen.logic;
 	> Score: Score
 	0 Game(Player, LevelIndex)
 	> Game(Player)
-	- CalculateScore()
+	> CalculateScore()
  */
 
 public class Game {
-	/* Moet nog methods krijgen voor:
-	 * - opgave tonen
-	 * - antwoord controleren
-	 * - level laden 
-	 */ 
 	int time = 0;
 	Exercise currentExercise;
 	int completedExercises = 0;
@@ -27,17 +29,26 @@ public class Game {
 	Score score;
 	Player player;
 	boolean gameOver;
+	boolean levelCompleted;
+	
+	Database database = null;
+	Calendar dateTime = Calendar.getInstance();
+	long starttime = dateTime.getTimeInMillis();
+	long timeAtStop, playTime;
+	
+	public Game(Database aDatabase, int aLevelIndex)
+	{
+		database = aDatabase;
+		player = database.getActivePlayer();
+		currentLevel = new Level(aLevelIndex);
+		time = currentLevel.getMaxTime();
+		score = new Score(player.getPlayerName(),currentLevel.getLevelIndex(),0);
+		currentExercise = currentLevel.CreateExercise();
+	}
 	
 	public Game(Player aPlayer, int aLevelIndex)
-	{
+	{// DEPRECATED?
 		player = aPlayer;
-		//Implement levelindex
-		/* ---
-		 * Is er dan geen lijst met levels nodig waarbij
-		 * een level via index als object kan opgehaald worden?
-		 * Of wordt dit hardcode in game gezet? Of mss gegenereerd door game
-		 * en opgeslaan in xml?
-		 	---*/
 		currentLevel = new Level(aLevelIndex);
 		time = currentLevel.getMaxTime();
 		score = new Score(player.getPlayerName(),currentLevel.getLevelIndex(),0);
@@ -46,10 +57,6 @@ public class Game {
 	
 	public Game(Player aPlayer)
 	{// Enkel als aangemaakt wordt zonder lvl --> v.b. geen save game
-		/*player = aPlayer;
-		currentLevel = new Level(0);
-		time = currentLevel.getMaxTime();
-		score = new Score(player.getPlayerName(),currentLevel.getLevelIndex(),0);*/
 		this(aPlayer,0);
 	}
 	
@@ -69,6 +76,11 @@ public class Game {
 		return currentLevel.getLevelIndex();
 	}
 	
+	public Level getCurrentLevel()
+	{
+		return currentLevel;
+	}
+	
 	public int getLevelPenaltyTime()
 	{
 		return currentLevel.getPenaltyTime();
@@ -84,25 +96,41 @@ public class Game {
 		return gameOver;
 	}
 	
+	public long getPlayTime()
+	{
+		return playTime;
+	}
+	
+	public boolean getIsLevelCompleted()
+	{
+		return levelCompleted;
+	}
+	
 	//SETTERS
 
 	
 	//METHODS
 	public int UpdateTime(int aDeltaTime)
-	{//TODO hier gameover toevoegen
+	{
 		time -= aDeltaTime;
 		if(time < 0){
-			time = 0;
+			TimesUp();
 		}
 		return time;
 	}
+	
+	/**
+	 * Berekent of het antwoord juist was en of er nog tijd is om een volgende vraag te genereren
+	 * @param double	aAnswer
+	 * @return boolean	Was antwoord juist?
+	 */
   	public boolean CalculateScore(double aAnswer)
- 
 	{//Bereken score
 		boolean wasCorrectAnswer = false;
   		if(aAnswer == currentExercise.getAnswer())
   		{
   			score = score.UpdateScore(1 * currentLevel.getLevelIndex());
+  			currentLevel.AnswerWasCorrect();
   			wasCorrectAnswer = true;
   		}
   		else
@@ -114,7 +142,7 @@ public class Game {
   			TimesUp();
   		}
   		else
-  		{// Er is nog tijd, gereneer volgende vraag
+  		{// Er is nog tijd, genereer volgende vraag
   			currentExercise = currentLevel.CreateExercise();
   		}
   		return wasCorrectAnswer;
@@ -124,10 +152,37 @@ public class Game {
   	{
   		time = 0;
   		gameOver = true;
-  		//-1 is gebruikt voor lege input
-  		//indien dit vals antwoord ook -1 zou hebben kan je eenmalig bonuspunten verdienen door op
-  		//submit te klikken op einde van spel
-		currentExercise = new Exercise("x_X GAME OVER X_x\nScore: " + score.getScore(), -2);
+  		//nieuwe huidige tijd nodig
+  		Calendar dateTime2 = Calendar.getInstance();
+  		timeAtStop = dateTime2.getTimeInMillis();
+  		playTime = timeAtStop-starttime;
+  		
+
+  		if(IsLevelCompleted())
+  		{
+  			Log.d("GAME","LEVEL IS DONE: " + currentLevel.levelIndex);
+  			database.getActivePlayer().LevelCompleted(currentLevel.levelIndex, playTime);
+  		}
+  		else
+  		{
+  			database.getActivePlayer().LevelPlayed(playTime);
+  		}
+  		
+  		try {
+			database.saveAll();
+			Log.d("GAME","SAVED");
+			Log.d("GAME","Player info: "+database.getActivePlayer().getUnlockedLevelIndex());
+		} catch (JSONException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+  		
   	}
 	
+  	public boolean IsLevelCompleted()
+  	{
+  		levelCompleted = currentLevel.getTotalCorrectAnswers() >= currentLevel.getCorrectAnswersNeeded();
+  		return levelCompleted;
+  	}
 }
