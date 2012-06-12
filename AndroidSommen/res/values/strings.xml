@@ -33,4 +33,7 @@
 	<string name="tmplHighScoreLevel">999</string>
 	<string name="tmplHighScoreScore">0123456789</string>
 	
+	<string name="main_no_scores">No HighScores to display</string>
+	
+	
 </resources>

@@ -1,25 +1,37 @@
 package les.syntra.androidsommen.gui;
 
 //import java.util.ArrayList;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import org.json.JSONException;
+
 import les.syntra.androidsommen.R;
-import les.syntra.androidsommen.logic.HighScores;
+import les.syntra.androidsommen.logic.Database;
+import les.syntra.androidsommen.logic.Score;
 import android.app.Activity;
+import android.app.ListActivity;
+import android.content.Context;
 import android.os.Bundle;
-//import android.widget.ArrayAdapter;
-//import android.widget.ListView;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 
-public class HighScoresActivity extends Activity {
-	
-	HighScores highScore ;
-	TextView txtVw;
-	
-	//private String[] lv_arr = {};
+public class HighScoresActivity extends ListActivity {
 
+	// initilise the database
+	Database database = null;;
+	
+	// declare the adapter
+	private HighScoreAdapter highScoreAdapter;
+	  	
 	/*
-	 * http://www.softwarepassion.com/android-series-custom-listview-items-and-adapters/
-	 * 	http://www.softwarepassion.com/android-series-custom-listview-items-and-adapters/
+
+TODO: styles aanpassen
 	String getPlayer()
 	int getLevelIndex() 
 	int getScore() 
@@ -27,78 +39,79 @@ public class HighScoresActivity extends Activity {
 			
 	*/
 	
-	@Override
-    public void onCreate(Bundle savedInstanceState) 
+	public void onCreate(Bundle savedInstanceState) 
 	{
 		
         super.onCreate(savedInstanceState);
         
         setContentView(R.layout.highscores);
         
-
-    	// Prepare an Array list of todo items
-        //ArrayList<String> listTODO = PrepareList();
-
-		// Get a handle to the list view
-		//ListView lv = (ListView) findViewById(R.id.ListView01);
-
-		// Bind the data with the list
-		//lv_arr = (String[]) listTODO.toArray(new String[0]);
-		//ArrayAdapter<String> arrAdpt ;
-		
-		
-		//arrAdpt = new ArrayAdapter<String>(this,R.id.ListView01,lv_arr);
-		
-		//lv.setAdapter(arrAdpt);
+        try {
+     			database = Database.instance(this);
+     		} catch (JSONException e1) {
+     			// TODO Auto-generated catch block
+     			e1.printStackTrace();
+     		} catch (IOException e1) {
+     			// TODO Auto-generated catch block
+     			e1.printStackTrace();
+     		}
         
         
-       String appName = getString(R.string.app_name);
-        
+        String appName = getString(R.string.app_name);
+    
         String activeScreen = getString(R.string.txtBtnHighScores);
-        
-       
-      setTitle(appName + " -> " + activeScreen);
+    
+        setTitle(appName + " -> " + activeScreen);
+  
 
+    	// Get the highscores
+        ArrayList<Score> ListHighScore = database.getHighScores();
         
+        // create the adapter
+        this.highScoreAdapter = new HighScoreAdapter(this, R.layout.tmpl_highscores_item, ListHighScore);
+        
+        // set the adapter
+        setListAdapter(this.highScoreAdapter);
+        
+     		
 	}
 	
 	
-	 
-	// The main ArrayList .
-	/*
-		private ArrayList<String> PrepareList() {
-			ArrayList<String> todoItems = new ArrayList<String>();
-			todoItems.add("Fill up Gasoline");
-			todoItems.add("Wash car");
-			todoItems.add("Dinner with friends");
-			todoItems.add("Watch Movie");
-			return todoItems;
-		}
-	*/
-		  
-	    /*
 
-private class HighScoreAdapter  extends ArrayAdapter<HighScores> {
+/*
+ * Zie voor een voorbeeld: http://www.softwarepassion.com/android-series-custom-listview-items-and-adapters/
+ * op dat voorbeeld heb ik mijn template gebaseerd
+ * tmpl_highscores_item.xml is een template voor één listview item 
+ * */
+	
+private class HighScoreAdapter  extends ArrayAdapter<Score> {
 
-	    private ArrayList<HighScores> items;
+	    private ArrayList<Score> scores;
 	    
-	    public HighScoreAdapter(Context context, int textViewResourceId, ArrayList<HighScores> items) {
-	            super(context, textViewResourceId, items);
-	            this.items = items;
+	    public HighScoreAdapter(Activity aContext, int ResId,ArrayList<Score> listHighScore)
+	    {
+	        super(aContext, ResId, listHighScore);
+	        scores = listHighScore;
 	    }
 	  
 	    @Override
 	    public View getView(int position, View convertView, ViewGroup parent) {
 	            View v = convertView;
 	            if (v == null) {
-	                LayoutInflater vi = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-	                v = vi.inflate(R.layout.tmpl_highscores_item, null);
-	            }
-	            HighScores o = items.get(position);
+                    LayoutInflater vi = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    v = vi.inflate(R.layout.tmpl_highscores_item, null);
+                }
+	            
+	            
+	            Score o = scores.get(position);
+	            
 	            if (o != null) {
 	                    TextView tt = (TextView) v.findViewById(R.id.PlayerName);
-	                    TextView bt = (TextView) v.findViewById(R.id.bottomtext);
+	                    
+	                    TextView bt = (TextView) v.findViewById(R.id.Level);
+	                    
 	                    if (tt != null) {
+	                    	Log.d("Player: ", "" + o.getPlayer() );
 	                          tt.setText("Name: "+o.getPlayer());                           
 	                    }
 	                    if(bt != null){
@@ -109,7 +122,7 @@ private class HighScoreAdapter  extends ArrayAdapter<HighScores> {
 	    }
 	    
 	}
-	    */
+	    
 
 }
 
