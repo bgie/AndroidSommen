@@ -20,24 +20,10 @@ public final class R {
         public static final int ic_launcher_red_cube_icon=0x7f020001;
     }
     public static final class id {
-<<<<<<< HEAD
-        public static final int DateTime=0x7f06001e;
-        public static final int Level=0x7f06001d;
-        public static final int PlayerName=0x7f06001c;
-        public static final int Score=0x7f06001f;
-        public static final int appLogo=0x7f060016;
-        public static final int btnAnswer=0x7f060011;
-        public static final int btnChoosePlayer=0x7f060017;
-        public static final int btnCreatePlayer=0x7f06000b;
-        public static final int btnDebug=0x7f06001b;
-        public static final int btnHighScores=0x7f060019;
-        public static final int btnNextLevel=0x7f060003;
-        public static final int btnSelectLevel=0x7f060002;
-        public static final int btnSettings=0x7f060018;
-        public static final int btnStart=0x7f06001a;
-        public static final int gameViewer=0x7f060013;
-        public static final int gridAnswers=0x7f060012;
-=======
+        public static final int DateTime=0x7f06002a;
+        public static final int Level=0x7f060029;
+        public static final int PlayerName=0x7f060028;
+        public static final int Score=0x7f06002b;
         public static final int appLogo=0x7f060022;
         public static final int btnAnswer=0x7f060010;
         public static final int btnChoosePlayer=0x7f060023;
@@ -51,7 +37,6 @@ public final class R {
         public static final int btnStart=0x7f060026;
         public static final int gameViewer=0x7f06001d;
         public static final int gridAnswers=0x7f060011;
->>>>>>> 38676c6d50ae9b069b3f2e60cbcbb4050985c746
         public static final int gridLevels=0x7f060001;
         public static final int layoutGame=0x7f06001f;
         public static final int layoutGameover=0x7f060020;
@@ -84,39 +69,22 @@ public final class R {
         public static final int chooselevel=0x7f030000;
         public static final int chooseplayer=0x7f030001;
         public static final int game=0x7f030002;
-<<<<<<< HEAD
-        public static final int gameviewer=0x7f030003;
-        public static final int highscores=0x7f030004;
-        public static final int settings=0x7f030005;
-        public static final int start=0x7f030006;
-        public static final int tmpl_highscores_item=0x7f030007;
-=======
         public static final int gameover=0x7f030003;
         public static final int gameviewer=0x7f030004;
         public static final int highscores=0x7f030005;
         public static final int settings=0x7f030006;
         public static final int start=0x7f030007;
->>>>>>> 38676c6d50ae9b069b3f2e60cbcbb4050985c746
+        public static final int tmpl_highscores_item=0x7f030008;
     }
     public static final class string {
         public static final int app_name=0x7f050001;
         public static final int hello=0x7f050000;
-<<<<<<< HEAD
-        public static final int tmplHighScoreDateTime=0x7f050015;
-        public static final int tmplHighScoreLevel=0x7f050016;
+        public static final int tmplHighScoreDateTime=0x7f050018;
+        public static final int tmplHighScoreLevel=0x7f050019;
         /**  HighScore Template Dummy Values  
          */
-        public static final int tmplHighScorePlayerName=0x7f050014;
-        public static final int tmplHighScoreScore=0x7f050017;
-        public static final int txtBtnAnswer=0x7f05000b;
-        public static final int txtBtnChoosePlayer=0x7f05000c;
-        public static final int txtBtnCreateNewPlayer=0x7f050010;
-        public static final int txtBtnHighScores=0x7f05000e;
-        public static final int txtBtnNextLevel=0x7f050012;
-        public static final int txtBtnSelectLevel=0x7f050011;
-        public static final int txtBtnSettings=0x7f05000d;
-        public static final int txtBtnStart=0x7f05000f;
-=======
+        public static final int tmplHighScorePlayerName=0x7f050017;
+        public static final int tmplHighScoreScore=0x7f05001a;
         public static final int txtBtnAnswer=0x7f05000f;
         public static final int txtBtnChoosePlayer=0x7f050010;
         public static final int txtBtnCreateNewPlayer=0x7f050014;
@@ -124,7 +92,6 @@ public final class R {
         public static final int txtBtnNextLevel=0x7f050015;
         public static final int txtBtnSettings=0x7f050011;
         public static final int txtBtnStart=0x7f050013;
->>>>>>> 38676c6d50ae9b069b3f2e60cbcbb4050985c746
         public static final int txtLblAge=0x7f050006;
         public static final int txtLblChooseAPlayer=0x7f050009;
         public static final int txtLblCorrect=0x7f05000d;
