@@ -64,7 +64,7 @@ public class Player {
 		LevelPlayed(aTimePlayed);
 		if(aCompletedLevel >= unlockedLevelIndex)
 		{
-			unlockedLevelIndex = aCompletedLevel;
+			unlockedLevelIndex = aCompletedLevel + 1;
 			Log.d("PLAYER","completed: YES!");
 		}
 		Log.d("PLAYER","completed: "+aCompletedLevel);

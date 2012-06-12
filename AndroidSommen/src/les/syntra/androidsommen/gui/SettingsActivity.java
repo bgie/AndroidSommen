@@ -46,7 +46,8 @@ public class SettingsActivity extends Activity {
 				database.getPlayers().get(0).LevelCompleted(5, 23);
 				Log.d("SETTINGSACTIVITY","player 1 lvl na update:" +database.getPlayers().get(0).getUnlockedLevelIndex());
 				database.getPlayers().clear();
-				Log.d("SETTINGSACTIVITY","lijst van players is leeggemaakt");
+				database.getHighScores().clear();
+				Log.d("SETTINGSACTIVITY","lijst van players is leeggemaakt " + database.getPlayers().size());
 				Log.d("SETTINGSACTIVITY","players in db:" +database.getPlayers());
 				
 				database.getPlayers().add(testplayer);
