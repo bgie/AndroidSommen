@@ -5,7 +5,6 @@ import java.util.Calendar;
 
 import org.json.JSONException;
 
-import android.util.Log;
 
 
 /* Ontwerp velden:
@@ -121,7 +120,7 @@ public class Game {
 	
 	/**
 	 * Berekent of het antwoord juist was en of er nog tijd is om een volgende vraag te genereren
-	 * @param double	aAnswer
+	 * @param aAnswer	(double) Het antwoord dat gecontroleerd moet worden
 	 * @return boolean	Was antwoord juist?
 	 */
   	public boolean CalculateScore(double aAnswer)
@@ -160,7 +159,6 @@ public class Game {
 
   		if(IsLevelCompleted())
   		{
-  			Log.d("GAME","LEVEL IS DONE: " + currentLevel.levelIndex);
   			database.getActivePlayer().LevelCompleted(currentLevel.levelIndex, playTime);
   		}
   		else
@@ -170,8 +168,6 @@ public class Game {
   		
   		try {
 			database.saveAll();
-			Log.d("GAME","SAVED");
-			Log.d("GAME","Player info: "+database.getActivePlayer().getUnlockedLevelIndex());
 		} catch (JSONException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

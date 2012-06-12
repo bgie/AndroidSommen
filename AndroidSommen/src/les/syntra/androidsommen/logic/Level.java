@@ -42,7 +42,7 @@ public class Level {
 			setLevelSettings("-", 3, 10);
 		break;
 		case 3:
-			setLevelSettings("*", 5, 10);
+			setLevelSettings("*", 5, 20);
 		break;
 		case 4:
 			setLevelSettings("/", 5, 10);
@@ -51,10 +51,10 @@ public class Level {
 			setLevelSettings("+-", 5, 10);
 		break;
 		case 6:
-			setLevelSettings("+-*", 5, 10);
+			setLevelSettings("+-*", 5, 20);
 		break;
 		case 7:
-			setLevelSettings("+-*/", 5, 10);
+			setLevelSettings("+-*/", 5, 20);
 		break;
 		case 8:
 			setLevelSettings("+-*/", 5, 30);
@@ -149,22 +149,22 @@ public class Level {
 		//Multi select operand
 		if(randomOperand == '+' || randomOperand == '*')
 		{// als + of maal dan uitkomst is gelijk aan maxtotal
-			result = (int) Math.floor(Math.random() * (maxTotal-minTotal))+minTotal;
+			result = (int) Math.round(Math.random() * (maxTotal-minTotal))+minTotal;
 			if(randomOperand == '+')
 			{
-				digit1 = (int) Math.floor(Math.random() * result);
+				digit1 = (int) Math.round(Math.random() * result);
 				digit2 = result - digit1;
-				question = digit1+ "+" +digit2+ "=?";
+				question = digit1+ " + " +digit2+ "=?";
 				answer = result;
 			}
 			else
 			{// Operand = *
 				//result als tijdelijke "seed"
 				//TODO verbeter algorithme voor opgave generator
-				digit1 = (int) Math.floor(Math.random() * Math.sqrt(result));
-				digit2 = (int) Math.floor(Math.random() * Math.sqrt(result));
+				digit1 = (int) Math.round(Math.random() * Math.sqrt(result));
+				digit2 = (int) Math.round(Math.random() * Math.sqrt(result));
 				result = digit1 * digit2;
-				question = digit1+ "*" +digit2+ "=?";
+				question = digit1+ " x " +digit2+ "=?";
 				answer = result;
 			}
 		}
@@ -173,19 +173,19 @@ public class Level {
 			
 			if(randomOperand == '-')
 			{
-				digit1 = (int) Math.floor(Math.random() * (maxTotal-minTotal))+minTotal;
-				digit2 = (int) Math.floor(Math.random() * digit1);
+				digit1 = (int) Math.round(Math.random() * (maxTotal-minTotal))+minTotal;
+				digit2 = (int) Math.round(Math.random() * digit1);
 				result = digit1 - digit2;
-				question = digit1+ "-" +digit2+ "=?";
+				question = digit1+ " - " +digit2+ "=?";
 				answer = result;
 			}
 			else
 			{// Operand = /
 				//TODO verbeter algorithme voor opgave generator
-				digit2 = (int) Math.floor(Math.random() * Math.sqrt(maxTotal-minTotal-1))+minTotal+1;
-				result = (int) Math.floor(Math.random() * Math.sqrt(maxTotal-minTotal))+minTotal;
+				digit2 = (int) Math.round(Math.random() * Math.sqrt(maxTotal-minTotal-1))+minTotal+1;
+				result = (int) Math.round(Math.random() * Math.sqrt(maxTotal-minTotal))+minTotal;
 				digit1 = result*digit2;
-				question = digit1+ "/" +digit2+ "=?";
+				question = digit1+ " : " +digit2+ "=?";
 				answer = result;
 			}
 		}
@@ -194,7 +194,7 @@ public class Level {
 		possibleAnswers.add(new AnswerChoice(result));
 		for(int ii = 0;ii<totalAnswers;ii++)
 		{
-			possibleAnswers.add(new AnswerChoice((int) Math.round(Math.random() * (result*2)-1)+1));
+			possibleAnswers.add(new AnswerChoice((int) Math.round(Math.random() * (maxTotal*2)-1)+1));
 		}
 		possibleAnswers.Shuffle();
 		Exercise exercise =  new Exercise(question, answer, possibleAnswers);
