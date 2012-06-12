@@ -21,13 +21,14 @@ import android.widget.ImageView;
 public class StartActivity extends Activity {
 
 	Database database = null;;
+	Button btnStart = null;	
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.start);
         
-        try {
+		try {
 			database = Database.instance(this);
 		} catch (JSONException e1) {
 			// TODO Auto-generated catch block
@@ -36,7 +37,7 @@ public class StartActivity extends Activity {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-        
+				       
         ImageView appLogo= (ImageView)findViewById(R.id.appLogo);
         Animation myFadeInAnimation = AnimationUtils.loadAnimation(this, R.anim.fadein);
         appLogo.startAnimation(myFadeInAnimation);
@@ -73,7 +74,7 @@ public class StartActivity extends Activity {
 			}
 		});
         
-        Button btnStart = (Button)findViewById(R.id.btnStart);
+        btnStart = (Button)findViewById(R.id.btnStart);
         btnStart.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -82,7 +83,7 @@ public class StartActivity extends Activity {
 				Intent i=new Intent(StartActivity.this,GameActivity.class);
 				startActivity(i);
 			}
-		});
+		});        
         
         Button btnDebug = (Button)findViewById(R.id.btnDebug);
         btnDebug.setOnClickListener(new View.OnClickListener() {
@@ -114,5 +115,13 @@ public class StartActivity extends Activity {
 				}
 			}
 		});
+	}
+	
+	@Override 
+	public void onResume() {
+		super.onResume();
+		Log.d("onResume", database != null ? "database bestaat" : "database bestaat niet");
+		Log.d("onResume", btnStart != null ? "btnStart bestaat" : "btnStart bestaat niet");
+		btnStart.setEnabled(database.getActivePlayer() != null);
 	}
 }

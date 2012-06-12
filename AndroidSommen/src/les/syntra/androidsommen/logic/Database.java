@@ -11,6 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Context;
+import android.util.Log;
 
 public class Database {
 	static private final String file = "data.json";
@@ -70,12 +71,12 @@ public class Database {
 			for(int i = 0; i < parray.length(); i++)
 				players.add(new Player(parray.getJSONObject(i)));
 			
-			String name = object.optString(activePlayerTag);
+			String name = object.optString(activePlayerTag).toLowerCase();
 			if(name != null)
 			{
 				for(Player p : players) 
 				{
-					if( p.getPlayerName() == name )
+					if( p.getPlayerName().toLowerCase().compareTo(name) == 0 )
 					{
 						activePlayer = p;
 						break;
