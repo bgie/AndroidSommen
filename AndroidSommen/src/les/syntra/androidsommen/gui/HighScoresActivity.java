@@ -1,26 +1,22 @@
 package les.syntra.androidsommen.gui;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-
+//import java.util.ArrayList;
 import les.syntra.androidsommen.R;
 import les.syntra.androidsommen.logic.HighScores;
-import les.syntra.androidsommen.logic.Score;
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+//import android.widget.ArrayAdapter;
+//import android.widget.ListView;
 import android.widget.TextView;
+
 
 public class HighScoresActivity extends Activity {
 	
 	HighScores highScore ;
 	TextView txtVw;
 	
-	
+	//private String[] lv_arr = {};
+
 	/*
 	 * http://www.softwarepassion.com/android-series-custom-listview-items-and-adapters/
 	 * 	http://www.softwarepassion.com/android-series-custom-listview-items-and-adapters/
@@ -39,32 +35,50 @@ public class HighScoresActivity extends Activity {
         
         setContentView(R.layout.highscores);
         
-        // instantiate the HighScore Object
-        highScore = new HighScores();
 
+    	// Prepare an Array list of todo items
+        //ArrayList<String> listTODO = PrepareList();
+
+		// Get a handle to the list view
+		//ListView lv = (ListView) findViewById(R.id.ListView01);
+
+		// Bind the data with the list
+		//lv_arr = (String[]) listTODO.toArray(new String[0]);
+		//ArrayAdapter<String> arrAdpt ;
+		
+		
+		//arrAdpt = new ArrayAdapter<String>(this,R.id.ListView01,lv_arr);
+		
+		//lv.setAdapter(arrAdpt);
         
-        txtVw = (TextView)findViewById(R.id.txtTest);
         
-        String test = "";
-        int i ;
-        
-        for (i = 0;i<highScore.size();i++)
-        {
-        	test += highScore.get(i) + "\n";
-        }
-        
-        txtVw.setText(test);
-        
-        String appName = getString(R.string.app_name);
+       String appName = getString(R.string.app_name);
         
         String activeScreen = getString(R.string.txtBtnHighScores);
         
-        setTitle(appName + " -> " + activeScreen);
+       
+      setTitle(appName + " -> " + activeScreen);
 
         
 	}
 	
-	private class HighScoreAdapter  extends ArrayAdapter<HighScores> {
+	
+	 
+	// The main ArrayList .
+	/*
+		private ArrayList<String> PrepareList() {
+			ArrayList<String> todoItems = new ArrayList<String>();
+			todoItems.add("Fill up Gasoline");
+			todoItems.add("Wash car");
+			todoItems.add("Dinner with friends");
+			todoItems.add("Watch Movie");
+			return todoItems;
+		}
+	*/
+		  
+	    /*
+
+private class HighScoreAdapter  extends ArrayAdapter<HighScores> {
 
 	    private ArrayList<HighScores> items;
 	    
@@ -72,7 +86,7 @@ public class HighScoresActivity extends Activity {
 	            super(context, textViewResourceId, items);
 	            this.items = items;
 	    }
-
+	  
 	    @Override
 	    public View getView(int position, View convertView, ViewGroup parent) {
 	            View v = convertView;
@@ -93,7 +107,9 @@ public class HighScoresActivity extends Activity {
 	            }
 	            return v;
 	    }
+	    
 	}
+	    */
 
 }
 
