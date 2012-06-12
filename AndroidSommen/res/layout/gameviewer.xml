@@ -13,5 +13,9 @@
     <include 
         android:id="@+id/layoutGame"
         layout="@layout/game"/>
+    
+    <include 
+        android:id="@+id/layoutGameover"
+        layout="@layout/gameover"/>
 
 </ViewFlipper>

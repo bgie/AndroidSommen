@@ -9,6 +9,12 @@ public class AnswerChoice {// klasse voor mogelijke antwoorden
 	}
 	
 	// GETTERS
+	/**
+	 * Krijgt antwoord terug
+	 * @return (int) Answer
+	 * @author Brecht Jr.
+	 *
+	 */
 	public int getAnswer()
 	{
 		return answer;

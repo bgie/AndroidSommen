@@ -20,9 +20,17 @@ public class PossibleAnswers  extends ArrayList<AnswerChoice>{
 		possibleAnswers = new ArrayList<AnswerChoice>();
 	}
 	
+	/**
+	 *  Lijst dooreen schudden, items op willekeurige volgorde zetten.
+	 */
 	public void Shuffle()
 	{
-		//shuffles de lijst door elkaar
-		// TODO maak shuffle functie
+		for(int i = 0; i < this.size(); i++)
+		{
+			int j = (int) (Math.round(Math.random() * (this.size() - i - 1)) + i);
+			AnswerChoice temp = this.get(i);
+			this.set(i, this.get(j));
+			this.set(j,temp);
+		}
 	}
 }

@@ -15,24 +15,37 @@ import android.content.Context;
 public class Database {
 	static private final String file = "data.json";
 	static private final String playersTag = "players";
+	static private final String activePlayerTag = "activePlayer";
 	static private final String highScoresTag = "highScores";
 	
 	private ArrayList<Player> players = new ArrayList<Player>();
+	private Player activePlayer = null;
 	private HighScores highScores;	
 	private Context context;
 	
-	// Singleton instance - de enige echte database
 	private static Database _instance = null;
 	
-	// Singleton factory method om de enige echte database op te vragen.
+	/**
+	 * Singleton factory method om de enige echte database op te vragen.
+	 * Alle gegevens worden ineens vanaf schijf ingelezen.
+	 * @param ctx	Een context voor security. Geef een Activity mee als context.
+	 * @return Het databank object.
+	 * @throws JSONException
+	 * @throws IOException
+	 */
 	public static Database instance(Context ctx) throws JSONException, IOException {
 		if(_instance == null)
 			_instance = new Database(ctx);
 		return _instance;
 	}
 	
-	// Constructor leest alle data.
-	public Database(Context ctx) throws JSONException, IOException {
+	/**
+	 * Constructor leest alle data.
+	 * @param ctx	Een context voor security. Geef een Activity mee als context.
+	 * @throws JSONException
+	 * @throws IOException
+	 */
+	protected Database(Context ctx) throws JSONException, IOException {
 		context = ctx;
 		String json = "";
 		try {
@@ -56,13 +69,31 @@ public class Database {
 			JSONArray parray = object.getJSONArray(playersTag);
 			for(int i = 0; i < parray.length(); i++)
 				players.add(new Player(parray.getJSONObject(i)));
-		} else
+			
+			String name = object.optString(activePlayerTag);
+			if(name != null)
+			{
+				for(Player p : players) 
+				{
+					if( p.getPlayerName() == name )
+					{
+						activePlayer = p;
+						break;
+					}
+				}
+			}
+		} 
+		else
 		{
 			highScores = new HighScores();
 		}
 	}
 	
-	// Slaat alles op
+	/**
+	 * Slaat alles ineens op in een private file op schijf.
+	 * @throws JSONException
+	 * @throws IOException
+	 */
 	public void saveAll() throws JSONException, IOException {
 		JSONObject object = new JSONObject();
 		object.put(highScoresTag, highScores.toJSON());
@@ -72,6 +103,9 @@ public class Database {
 			parray.put(p.toJSON());
 		object.put(playersTag, parray);
 		
+		if( activePlayer != null)
+			object.put(activePlayerTag,activePlayer.getPlayerName());
+		
 		String json = object.toString();
 		
 		FileOutputStream fos = context.openFileOutput(file,Context.MODE_PRIVATE);
@@ -79,12 +113,34 @@ public class Database {
 		fos.close();
 	}
 	
-	// Geeft de lijst met players (read-write access)
+	/**
+	 * @return Geeft de lijst met players (read-write access).
+	 */
 	public ArrayList<Player> getPlayers() {
 		return players;
 	}
 	
-	// Geeft de lijst met highscores (read-write access)
+	/**
+	 * @return Geeft de huidige (of laatst) actieve speler, of null als er geen is.
+	 */
+	public Player getActivePlayer() {
+		return activePlayer;
+	}
+	
+	/**
+	 * Stelt een player in als de actieve speler.
+	 * @param p		De player die nu de actieve player wordt. Moet bestaan in de lijst met players!
+	 */
+	public void setActivePlayer(Player p) {
+		if( players.contains(p))
+			activePlayer = p;
+		else
+			activePlayer = null;
+	}
+	
+	/**
+	 * @return Geeft de lijst met highscores (read-write access).
+	 */
 	public HighScores getHighScores() {
 		return highScores;
 	}

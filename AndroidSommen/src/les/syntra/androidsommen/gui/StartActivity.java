@@ -89,14 +89,22 @@ public class StartActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				try {										
+				try {		
+					Player p;
 					database.getPlayers().add(new Player("Fons",34));
 					database.getPlayers().add(new Player("Mimi",58));
+					database.getPlayers().add(p = new Player("Brecht",32,3,0));
 					database.getHighScores().add(new Score("Mimi",0,1000000));
 					database.getHighScores().add(new Score("Fons",0,2000000));
 					database.getHighScores().add(new Score("Brecht",0,3000000));
+					database.setActivePlayer(p);
 					database.saveAll();	
 					Log.d("Database", "Database heeft " + database.getPlayers().size() + " spelers.");
+					Log.d("Database", "Database heeft " + database.getHighScores().size() + " scores.");
+					if(database.getActivePlayer() == null)
+						Log.d("Database", "Actieve speler is er niet." );
+					else
+						Log.d("Database", "Actieve speler is " +  database.getActivePlayer().getPlayerName() );
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
