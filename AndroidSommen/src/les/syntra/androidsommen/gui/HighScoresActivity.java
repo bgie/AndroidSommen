@@ -3,6 +3,8 @@ package les.syntra.androidsommen.gui;
 //import java.util.ArrayList;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import org.json.JSONException;
 
@@ -106,16 +108,33 @@ private class HighScoreAdapter  extends ArrayAdapter<Score> {
 	            Score o = scores.get(position);
 	            
 	            if (o != null) {
-	                    TextView tt = (TextView) v.findViewById(R.id.PlayerName);
+	                    TextView player= (TextView) v.findViewById(R.id.PlayerName);
 	                    
-	                    TextView bt = (TextView) v.findViewById(R.id.Level);
+	                    TextView level = (TextView) v.findViewById(R.id.Level);
+
+	                    TextView dateTime = (TextView) v.findViewById(R.id.DateTime);
+
+	                    TextView score = (TextView) v.findViewById(R.id.Score);
 	                    
-	                    if (tt != null) {
+	                    if (player != null) {
 	                    	Log.d("Player: ", "" + o.getPlayer() );
-	                          tt.setText("Name: "+o.getPlayer());                           
+	                          player.setText("Name: "+o.getPlayer());                           
 	                    }
-	                    if(bt != null){
-	                          bt.setText("Level: "+ o.getLevelIndex());
+	                    if(level != null){
+	                          level.setText("Level: "+ o.getLevelIndex());
+	                    }
+	                    if(dateTime != null){
+	                    	
+	                    	Calendar cal = o.getDateTime();
+	                    	Date dt = cal.getTime();
+
+	                    	String timeStamp = dt.getDay() + "/" + dt.getMonth() + "/" + (1900 + dt.getYear()) +
+	                    			" - " + dt.getHours() + ":" + dt.getMinutes();
+	                    	
+	                    	dateTime.setText( timeStamp);
+	                    }
+	                    if(score != null){
+	                    	score.setText("Score: "+ o.getScore());
 	                    }
 	            }
 	            return v;
