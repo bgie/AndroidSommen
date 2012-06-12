@@ -17,24 +17,35 @@ public class ChoosePlayerActivity extends Activity{
 	EditText txtName, txtAge;
 	
 	@Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) 
+	{
+		
         super.onCreate(savedInstanceState);
+        
         setContentView(R.layout.chooseplayer);
+        
         String appName = getString(R.string.app_name);
+        
         String activeScreen = getString(R.string.txtBtnChoosePlayer);
+        
         setTitle(appName + " -> " + activeScreen);
         
         txtName = (EditText)findViewById(R.id.txtName);
+        
         txtAge = (EditText)findViewById(R.id.txtAge);
+        
         Button btnCreatePlayer=(Button)findViewById(R.id.btnCreatePlayer);
         
-        try {
-        	try {
+        try 
+        {
+        	try
+        	{
 				btnCreatePlayer.setOnClickListener(new CreateNewPlayer());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+        	
         } catch(JSONException e) {
         	e.printStackTrace();
         }

@@ -52,6 +52,10 @@ public class Score {
 		return player;
 	}
 	
+	/**
+	 * dit is een samenvatting
+	 * @return {Integer} The Level index of the player
+	 * */
 	public int getLevelIndex() {
 		return levelIndex;
 	}

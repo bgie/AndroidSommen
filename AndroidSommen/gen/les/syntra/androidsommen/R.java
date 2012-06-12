@@ -20,6 +20,10 @@ public final class R {
         public static final int ic_launcher_red_cube_icon=0x7f020001;
     }
     public static final class id {
+        public static final int DateTime=0x7f06002a;
+        public static final int Level=0x7f060029;
+        public static final int PlayerName=0x7f060028;
+        public static final int Score=0x7f06002b;
         public static final int appLogo=0x7f060022;
         public static final int btnAnswer=0x7f060010;
         public static final int btnChoosePlayer=0x7f060023;
@@ -70,10 +74,17 @@ public final class R {
         public static final int highscores=0x7f030005;
         public static final int settings=0x7f030006;
         public static final int start=0x7f030007;
+        public static final int tmpl_highscores_item=0x7f030008;
     }
     public static final class string {
         public static final int app_name=0x7f050001;
         public static final int hello=0x7f050000;
+        public static final int tmplHighScoreDateTime=0x7f050018;
+        public static final int tmplHighScoreLevel=0x7f050019;
+        /**  HighScore Template Dummy Values  
+         */
+        public static final int tmplHighScorePlayerName=0x7f050017;
+        public static final int tmplHighScoreScore=0x7f05001a;
         public static final int txtBtnAnswer=0x7f05000f;
         public static final int txtBtnChoosePlayer=0x7f050010;
         public static final int txtBtnCreateNewPlayer=0x7f050014;
