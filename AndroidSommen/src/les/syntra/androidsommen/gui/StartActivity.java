@@ -8,6 +8,7 @@ import les.syntra.androidsommen.R;
 import les.syntra.androidsommen.logic.Database;
 import les.syntra.androidsommen.logic.Player;
 import les.syntra.androidsommen.logic.Score;
+import les.syntra.androidsommen.logic.Sounds;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import android.widget.ImageView;
 public class StartActivity extends Activity {
 
 	Database database = null;;
+	Sounds sounds = null;
 	Button btnStart = null;	
 	
 	@Override
@@ -37,6 +39,9 @@ public class StartActivity extends Activity {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		
+		sounds = new Sounds(this);
+		sounds.PlayStartScreenLoop();
 				       
         ImageView appLogo= (ImageView)findViewById(R.id.appLogo);
         Animation myFadeInAnimation = AnimationUtils.loadAnimation(this, R.anim.fadein);

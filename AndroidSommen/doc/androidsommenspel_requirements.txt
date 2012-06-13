@@ -63,13 +63,8 @@ Opmerkingen:
 
 TODO:
 - generateExercise is bugged voor /(te grote getallen) en mss ook *(te klein) -> BRECHT Jr.
-- generatePossibleAnswers -> Jr.
-- progressie toevoegen aan game -> volgend level -> Jr.? (gameover -> verwijder antwoord en voeg toe
-				validatie geslaagd -> unlocklevel + ga terug lvl keuze scherm met nieuw level unlocked)
 				
-				>>opzoeken arraylist extends constructor (possibleanswers)
-				
-- double tap game --> pause en settings scherm (optioneel) -> Jr.
+- //double tap game --> pause en settings scherm (optioneel) -> Jr.
 - player aanmaken en selecteren -> patrick
 - highscoresscherm -> marco
 - settingsscherm -> marco? -> misschien tijdelijk "credits tekst"?
@@ -80,6 +75,9 @@ DONE:
 	-> timer/loop toevoegen aan game
 	-> tijd berekening en score (game class)
 	-> leveloverzichtscherm
+	-> progressie toevoegen aan game -> volgend level -> Jr.? (gameover -> verwijder antwoord en voeg toe
+				validatie geslaagd -> unlocklevel + ga terug lvl keuze scherm met nieuw level unlocked)
+	-> generatePossibleAnswers
 - Sr.
 
 - Patrick
@@ -178,3 +176,9 @@ Reeds in app:
 -http://developer.android.com/guide/topics/resources/localization.html
 -http://www.warriorpoint.com/blog/2009/05/26/android-switching-screens-in-an-activity-with-animations-using-viewflipper/
 -http://developer.android.com/reference/android/widget/ViewFlipper.html
+-http://karanar.net/?p=25
+-http://www.androidsnippets.com/playing-sound-fx-for-a-game
+-http://blog.nelsondev.net/?p=207
+-http://developer.android.com/reference/android/media/SoundPool.html
+-http://developer.android.com/reference/android/provider/Settings.System.html
+-http://developer.android.com/reference/android/media/MediaPlayer.html

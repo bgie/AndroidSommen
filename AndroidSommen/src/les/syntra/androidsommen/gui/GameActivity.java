@@ -13,6 +13,7 @@ import les.syntra.androidsommen.logic.Game;
 import les.syntra.androidsommen.logic.Level;
 import les.syntra.androidsommen.logic.Player;
 import les.syntra.androidsommen.logic.PossibleAnswers;
+import les.syntra.androidsommen.logic.Sounds;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
@@ -29,6 +30,7 @@ import android.widget.ViewFlipper;
 
 public class GameActivity extends Activity {
 	Database database = null;
+	Sounds sounds = null;
 	
     boolean gameOver = false;
     boolean wasCorrectAnswer = false;
@@ -54,6 +56,8 @@ public class GameActivity extends Activity {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
+        
+        sounds = new Sounds(this);
         
         vfGameViewer = (ViewFlipper)findViewById(R.id.gameViewer);
         
@@ -87,11 +91,10 @@ public class GameActivity extends Activity {
 			
 			 ArrayList<Level> levelArrayList = new ArrayList<Level>();
 		        
-		        // level generatie
+		        // level selectie generatie
 		        if(database.getActivePlayer() != null)
 		        {
-		        	Log.d("GAMEACTIVITY","unlockedlevels: "+database.getActivePlayer().getUnlockedLevelIndex());
-		        	for(int ii = 1;ii<=database.getActivePlayer().getUnlockedLevelIndex();ii++)
+		        	for(int ii = database.getActivePlayer().getUnlockedLevelIndex();ii>=1;ii--)
 		        	{
 		        		levelArrayList.add(new Level(ii));
 		        	}
@@ -100,7 +103,6 @@ public class GameActivity extends Activity {
 		        {
 		        	levelArrayList.add(new Level(1));
 		        }
-		        
 		        
 		        aaLevelChoices = new LevelChoiceAdapter(GameActivity.this, R.id.gridLevels, levelArrayList);
 				gridLevels.setAdapter(aaLevelChoices);
@@ -278,6 +280,7 @@ public class GameActivity extends Activity {
 			if(wasCorrectAnswer)
 			{//Indien correct toon extra punten
 				lblScore.setText(""+activeGame.getScore() + "+" + activeGame.getLevelIndex());
+				sounds.PlayDing();
 			}
 			else
 			{
@@ -285,6 +288,7 @@ public class GameActivity extends Activity {
 				{//Indien niet einde spel en toch fout toon straftijd
 					lblTime.setText(""+(activeGame.getTime() + "-" + activeGame.getLevelPenaltyTime()));
 				}
+				sounds.PlayBuzz();
 			}
 			
 			if(!gameOver){
@@ -396,10 +400,12 @@ public class GameActivity extends Activity {
 			{
 				String strLevelPassedMessage = getString(R.string.txtLblLevelPassedMessage);
 				lblLevelPassed.setText(""+strLevelPassedMessage);
+				sounds.PlayEndScreenPass();
 			}
 			else
 			{
 				lblLevelPassed.setText("");
+				sounds.PlayEndScreenFail();
 			}
 			
 		}
