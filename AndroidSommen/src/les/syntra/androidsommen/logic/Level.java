@@ -194,7 +194,7 @@ public class Level {
 		possibleAnswers.add(new AnswerChoice(result));
 		for(int ii = 0;ii<totalAnswers;ii++)
 		{
-			possibleAnswers.add(new AnswerChoice((int) Math.round(Math.random() * (maxTotal*2)-1)+1));
+			possibleAnswers.add(new AnswerChoice((int) Math.round(Math.random() * (maxTotal-1))+1));
 		}
 		possibleAnswers.Shuffle();
 		Exercise exercise =  new Exercise(question, answer, possibleAnswers);

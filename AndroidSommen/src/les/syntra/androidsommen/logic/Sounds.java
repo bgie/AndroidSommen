@@ -6,33 +6,27 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.provider.Settings.System;
+import android.util.Log;
 
 public class Sounds {
-	/*private static SoundPool sounds;
-	private static int select;
-	private static int found;
-	private static int next;
-	private static MediaPlayer music;
-	private static boolean sound = false;*/
-	
-	//System mSystemSettings = new System();
-	//mContentResolver = this.getContentResolver();
 	
 	private Context context;
 	private static boolean soundEnabled = false;
 	private static Sounds _instance = null;
 	
 	private static SoundPool sounds;
-	/*private static int select;
-	private static int found;
-	private static int next;
-	private static MediaPlayer music;*/
 	
 	private static int buzz;
 	private static int ding;
 	private static MediaPlayer startScreenLoop;
 	private static int endScreenPass;
 	private static int endScreenFail;
+	
+	private int playIdBuzz;
+	private int playIdDing;
+	private int playIdStartScreenLoop;
+	private int playIdEndScreenPass;
+	private int playIdEndScreenFail;
 	
 	/**
 	 * Singleton factory method om de enige echte sounds op te vragen.
@@ -62,54 +56,63 @@ public class Sounds {
 	    startScreenLoop = MediaPlayer.create(context, R.raw.start_loop);
 	}
 	
+	//GETTERS
 	public boolean getIsSoundEnabled()
 	{
 		int val = System.getInt(context.getContentResolver(), System.VOLUME_MUSIC, 0);
 		soundEnabled = val != 0;
+		Log.d("SOUNDS","Volume Music: "+val);
 		return soundEnabled;
 	}
 	
+	public float getSystemVolume()
+	{
+		AudioManager mgr = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
+        float streamVolumeCurrent = mgr.getStreamVolume(AudioManager.STREAM_MUSIC);
+        float streamVolumeMax = mgr.getStreamMaxVolume(AudioManager.STREAM_MUSIC);    
+        float volume = streamVolumeCurrent / streamVolumeMax;
+        return volume;
+	}
 	
-	//public static void loadSound(Context context) {
-	    //sound = SilhouPreferences.sound(context); // should there be sound?
-	    //sounds = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
-	    // three ref. to the sounds I need in the application
-	    //select = sounds.load(context, R.raw.zap1, 1);
-	    //found = sounds.load(context, R.raw.accent1, 1);
-	    //next = sounds.load(context, R.raw.accent2, 1);
-	    // the music that is played at the beginning and when there is only 10 seconds left in a game
-	    //music = MediaPlayer.create(context, R.raw.silhouette2);
-	//}
-	
+	//METHODS
 	public void PlayBuzz() {
 	    if (!soundEnabled) return; // if sound is turned off no need to continue
-	    sounds.stop(buzz);
-	    sounds.play(buzz, 1, 1, 1, 0, 1);
+	    StopAllSounds();
+	    float volume = getSystemVolume();
+	    playIdBuzz = sounds.play(buzz, volume, volume, 1, 0, 1);
 	}
 	
 	public void PlayDing() {
 	    if (!soundEnabled) return; // if sound is turned off no need to continue
-	    sounds.stop(ding);
-	    sounds.play(ding, 1, 1, 1, 0, 1);
+	    StopAllSounds();
+	    float volume = getSystemVolume();
+	    playIdDing = sounds.play(ding, volume, volume, 1, 0, 1);
 	}
 	
 	public void PlayEndScreenPass() {
 	    if (!soundEnabled) return; // if sound is turned off no need to continue
-	    sounds.stop(endScreenPass);
-	    sounds.play(endScreenPass, 1, 1, 1, 0, 1);
+	    StopAllSounds();
+	    float volume = getSystemVolume();
+	    playIdEndScreenPass = sounds.play(endScreenPass, volume, volume, 1, 0, 1);
 	}
 	
 	public void PlayEndScreenFail() {
 	    if (!soundEnabled) return; // if sound is turned off no need to continue
-	    sounds.stop(endScreenFail);
-	    sounds.play(endScreenFail, 1, 1, 1, 0, 1);
+	    StopAllSounds();
+	    float volume = getSystemVolume();
+	    playIdEndScreenFail = sounds.play(endScreenFail, volume, volume, 1, 0, 1);
 	}
 	
 	public final void PlayStartScreenLoop() {
+		getIsSoundEnabled();
 	    if (!soundEnabled) return;
+	    StopAllSounds();
 	    if (!startScreenLoop.isPlaying()) 
 	    {
 	    	startScreenLoop.seekTo(0);
+	    	startScreenLoop.setLooping(true);
+	    	float volume = getSystemVolume();
+	    	startScreenLoop.setVolume(volume, volume);
 	    	startScreenLoop.start();
 	    }
 	}
@@ -120,5 +123,14 @@ public class Sounds {
 	    {
 	    	startScreenLoop.pause();
 	    }
+	}
+	
+	public final void StopAllSounds()
+	{
+		if (!soundEnabled) return;
+		sounds.stop(playIdBuzz);
+		sounds.stop(playIdDing);
+		sounds.stop(playIdEndScreenPass);
+		sounds.stop(playIdEndScreenFail);
 	}
 }

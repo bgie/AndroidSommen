@@ -112,10 +112,8 @@ public class StartActivity extends Activity {
 					else
 						Log.d("Database", "Actieve speler is " +  database.getActivePlayer().getPlayerName() );
 				} catch (JSONException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -125,8 +123,15 @@ public class StartActivity extends Activity {
 	@Override 
 	public void onResume() {
 		super.onResume();
-		Log.d("onResume", database != null ? "database bestaat" : "database bestaat niet");
-		Log.d("onResume", btnStart != null ? "btnStart bestaat" : "btnStart bestaat niet");
+		//Log.d("onResume", database != null ? "database bestaat" : "database bestaat niet");
+		//Log.d("onResume", btnStart != null ? "btnStart bestaat" : "btnStart bestaat niet");
 		btnStart.setEnabled(database.getActivePlayer() != null);
+		sounds.PlayStartScreenLoop();
+	}
+	
+	public void onStop()
+	{
+		super.onStop();
+		sounds.PauseStartScreenLoop();
 	}
 }

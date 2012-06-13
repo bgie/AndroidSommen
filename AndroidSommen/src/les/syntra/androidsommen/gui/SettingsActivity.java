@@ -40,7 +40,7 @@ public class SettingsActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				Log.d("SETTINGSACTIVITY","active player lvl na update:" +database.getActivePlayer().getUnlockedLevelIndex());
+				/*Log.d("SETTINGSACTIVITY","active player lvl na update:" +database.getActivePlayer().getUnlockedLevelIndex());
 				Player testplayer = new Player("test",22);
 				Log.d("SETTINGSACTIVITY","player 1 lvl:" +database.getPlayers().get(0).getUnlockedLevelIndex());
 				database.getPlayers().get(0).LevelCompleted(5, 23);
@@ -58,11 +58,13 @@ public class SettingsActivity extends Activity {
 				Log.d("SETTINGSACTIVITY","active player:" +database.getActivePlayer());
 				Log.d("SETTINGSACTIVITY","active player unlock lvl:" +database.getActivePlayer().getUnlockedLevelIndex());
 				database.getActivePlayer().LevelCompleted(5, 23);
-				Log.d("SETTINGSACTIVITY","activeplayer  lvl na update:" +database.getActivePlayer().getUnlockedLevelIndex());
+				Log.d("SETTINGSACTIVITY","activeplayer  lvl na update:" +database.getActivePlayer().getUnlockedLevelIndex());*/
+				database.getPlayers().clear();
+				database.getHighScores().clear();
 				try {
 					database.saveAll();
-					Log.d("SETTINGSACTIVITY","SAVED");
-					Log.d("SETTINGSACTIVITY","players in db na delete:" +database.getPlayers());
+					//Log.d("SETTINGSACTIVITY","SAVED");
+					//Log.d("SETTINGSACTIVITY","players in db na delete:" +database.getPlayers());
 				} catch (JSONException e) {
 					e.printStackTrace();
 				} catch (IOException e) {

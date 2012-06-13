@@ -52,8 +52,7 @@ Applicatie start
 ==============================
 
 Opmerkingen:
--activeplayer wordt enkel gezet tijdens debug --> blijft dus niet opgeslaan in db (enkel tijdens sessie)
--saveAll lijkt niet te werken met progressie van unlockedlevel?
+-games lopen verder ook al is game activity weg --> game moet nog expliciet afgesloten worden
 
 ->VOORSTELLEN:
 	-Brecht Sr. doet xml afhandeling (volledig highscore en score + overige opslag) 
@@ -182,3 +181,4 @@ Reeds in app:
 -http://developer.android.com/reference/android/media/SoundPool.html
 -http://developer.android.com/reference/android/provider/Settings.System.html
 -http://developer.android.com/reference/android/media/MediaPlayer.html
+-http://stackoverflow.com/questions/6849159/android-soundpool-stop-does-not-seem-to-work
