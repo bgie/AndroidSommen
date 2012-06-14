@@ -41,6 +41,10 @@ public class Sounds {
 		return _instance;
 	}
 	
+	/**
+	 * Maakt het enige Sounds object aan + initialiseerd de settings
+	 * @param aContext De activity die dit oproept
+	 */
 	public Sounds(Context aContext)
 	{
 		context = aContext;
@@ -57,6 +61,11 @@ public class Sounds {
 	}
 	
 	//GETTERS
+	
+	/**
+	 * Kijkt of het geluid aanstaat
+	 * @return (boolean) true indien geluid aanstaat
+	 */
 	public boolean getIsSoundEnabled()
 	{
 		int val = System.getInt(context.getContentResolver(), System.VOLUME_MUSIC, 0);
@@ -65,6 +74,10 @@ public class Sounds {
 		return soundEnabled;
 	}
 	
+	/**
+	 * Vraagt het systeem volume op (voor games)
+	 * @return (float) waarde tussen 0 en 1
+	 */
 	public float getSystemVolume()
 	{
 		AudioManager mgr = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
@@ -125,6 +138,9 @@ public class Sounds {
 	    }
 	}
 	
+	/**
+	 * Stopt alle effect geluiden (SoundPool)
+	 */
 	public final void StopAllSounds()
 	{
 		if (!soundEnabled) return;

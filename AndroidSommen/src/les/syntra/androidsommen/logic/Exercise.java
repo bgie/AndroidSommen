@@ -13,9 +13,9 @@ public class Exercise {
 	
 	/**
 	 * Constructor voor oefening aan te maken
-	 * @param (String) Vraag, (double) Antwoord
+	 * @param aQuestion (String) De vraag die getoond wordt
+	 * @param aAnswer 	(double) Het juiste antwoord
 	 * @author Brecht Jr.
-	 *
 	 */
 	public Exercise(String aQuestion, double aAnswer)
 	{
@@ -24,10 +24,11 @@ public class Exercise {
 	}
 	
 	/**
-	 * Constructor voor oefening aan te maken
-	 * @param (String) Vraag, (double) Antwoord, (PossibleAnswers) Arraylist mogelijke antwoorden
+	 * Constructor voor oefening aan te maken met mogelijke antwoorden
+	 * @param aQuestion (String) De vraag die getoond wordt 
+	 * @param aAnswer (double) Het juiste antwoord
+	 * @param aPossibleAnswers (PossibleAnswers) Arraylist mogelijke antwoorden
 	 * @author Brecht Jr.
-	 *
 	 */
 	public Exercise(String aQuestion, double aAnswer, PossibleAnswers aPossibleAnswers)
 	{
@@ -42,7 +43,6 @@ public class Exercise {
 	 * Get vraag
 	 * @return (String) question
 	 * @author Brecht Jr.
-	 *
 	 */
 	public String getQuestion()
 	{
@@ -53,7 +53,6 @@ public class Exercise {
 	 * Get antwoord
 	 * @return (double) answer
 	 * @author Brecht Jr.
-	 *
 	 */
 	public double getAnswer()
 	{
@@ -64,7 +63,6 @@ public class Exercise {
 	 * Get mogelijke antwoorden
 	 * @return (PossibleAnswers) Arraylist met mogelijke antwoorden
 	 * @author Brecht Jr.
-	 *
 	 */
 	public PossibleAnswers getPossibleAnswers()
 	{

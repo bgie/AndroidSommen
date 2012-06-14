@@ -75,7 +75,6 @@ public class GameActivity extends Activity {
 	/**
 	 * Klasse om level selectie scherm te instantieren
 	 * @author Brecht Jr.
-	 *
 	 */
 	class ScreenLevelSelection
 	{
@@ -112,7 +111,6 @@ public class GameActivity extends Activity {
 		/**
 		 * Adapter om gridview met mogelijke levels te vullen
 		 * @author Brecht Jr.
-		 *
 		 */
 		class LevelChoiceAdapter extends ArrayAdapter<Level>
 		{
@@ -145,7 +143,6 @@ public class GameActivity extends Activity {
 		/**
 		 * Selecteer level om te spelen
 		 * @author Brecht Jr.
-		 *
 		 */
 		class SelectLevel implements OnClickListener
 		{
@@ -164,7 +161,6 @@ public class GameActivity extends Activity {
 		/**
 		 * Start hoogst vrijgespeeld level
 		 * @author Brecht Jr.
-		 *
 		 */
 		class NextLevel implements OnClickListener
 		{
@@ -202,7 +198,6 @@ public class GameActivity extends Activity {
 		/**
 		 * Adapter om gridview met mogelijke antwoorden te vullen
 		 * @author Brecht Jr.
-		 *
 		 */
 		class AnswerChoiceAdapter extends ArrayAdapter<AnswerChoice>
 		{
@@ -235,7 +230,6 @@ public class GameActivity extends Activity {
 		/**
 		 * Controleer antwoord via text input
 		 * @author Brecht Jr.
-		 *
 		 */
 		class AnswerTxt implements OnClickListener
 		{
@@ -255,7 +249,6 @@ public class GameActivity extends Activity {
 		/**
 		 * Controleer antwoord via knop
 		 * @author Brecht Jr.
-		 *
 		 */
 		class AnswerButton implements OnClickListener
 		{
@@ -271,7 +264,6 @@ public class GameActivity extends Activity {
 		/**
 		 * Antwoord check functie
 		 * @author Brecht Jr.
-		 *
 		 */
 		public void checkAnswer(String strInput)
 		{
@@ -373,7 +365,6 @@ public class GameActivity extends Activity {
 	/**
 	 * Klasse om gameOver scherm te instantieren
 	 * @author Brecht Jr.
-	 *
 	 */
 	class ScreenGameOver
 	{
@@ -413,7 +404,6 @@ public class GameActivity extends Activity {
 		/**
 		 * Ga naar level selection scherm
 		 * @author Brecht Jr.
-		 *
 		 */
 		class GoToLevelSelection implements OnClickListener
 		{

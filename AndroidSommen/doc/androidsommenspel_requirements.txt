@@ -169,6 +169,17 @@ Voor gridview:
 -http://sogacity.com/how-to-make-a-custom-arrayadapter-for-listview/
 -http://stackoverflow.com/questions/4393889/how-can-i-store-an-arraylist-of-custom-objects
 
+Voor billing:
+-http://forum.unity3d.com/threads/122635-What-s-the-best-way-to-organize-selling-extra-content-in-app
+-http://developer.android.com/guide/market/billing/billing_overview.html
+-http://stackoverflow.com/questions/2022945/implementing-in-app-purchases-in-android
+-http://blog.blundell-apps.com/simple-inapp-billing-payment/
+-http://stackoverflow.com/questions/5696960/in-app-billing-tutorial/6292728#6292728
+
+User content:
+-http://stackoverflow.com/questions/2507898/how-to-pick-a-image-from-gallery-sd-card-for-my-app-in-android
+-http://stackoverflow.com/questions/2034892/how-do-i-allow-a-user-to-browse-choose-a-file-for-my-app-use-in-android
+
 Reeds in app:
 -http://developer.android.com/reference/android/os/Handler.html (timer/gameloop)
 -http://developer.android.com/guide/topics/resources/animation-resource.html
