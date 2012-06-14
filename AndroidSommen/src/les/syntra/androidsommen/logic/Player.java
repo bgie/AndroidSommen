@@ -59,18 +59,24 @@ public class Player {
 	//SETTERS
 	
 	//METHODS
+	/**
+	 * Level is vrijgespeeld
+	 * @param aCompletedLevel (int) huidig level
+	 * @param aTimePlayed (long) speelduur van spel
+	 */
 	public void LevelCompleted(int aCompletedLevel, long aTimePlayed)
 	{
 		LevelPlayed(aTimePlayed);
 		if(aCompletedLevel >= unlockedLevelIndex)
 		{
 			unlockedLevelIndex = aCompletedLevel + 1;
-			Log.d("PLAYER","completed: YES!");
 		}
-		Log.d("PLAYER","completed: "+aCompletedLevel);
-		Log.d("PLAYER","unlocklvl: "+unlockedLevelIndex);
 	}
 	
+	/**
+	 * Level werd gespeeld, geen extra unlock
+	 * @param aTimePlayed (long) speelduur van het spel
+	 */
 	public void LevelPlayed(long aTimePlayed)
 	{// kan ook gebruikt worden indien niet een nieuw level behaald wordt
 		totalTimePlayed += aTimePlayed;

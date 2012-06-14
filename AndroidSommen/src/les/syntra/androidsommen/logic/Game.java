@@ -166,6 +166,8 @@ public class Game {
   			database.getActivePlayer().LevelPlayed(playTime);
   		}
   		
+  		database.getHighScores().add(score);
+  		
   		try {
 			database.saveAll();
 		} catch (JSONException e) {

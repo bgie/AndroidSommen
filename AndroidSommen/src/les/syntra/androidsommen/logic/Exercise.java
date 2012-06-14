@@ -6,10 +6,12 @@ package les.syntra.androidsommen.logic;
 	> Answer: double
 	> Exercise(question, answer)
  */
-public class Exercise {
+public abstract class Exercise {
 	String question = "";
-	double answer = 0;
-	PossibleAnswers possibleAnswers;
+	int answer = 0;
+	PossibleAnswers possibleAnswers = new PossibleAnswers();
+	
+	int minTotal, maxTotal, totalAnswers;
 	
 	/**
 	 * Constructor voor oefening aan te maken
@@ -17,7 +19,7 @@ public class Exercise {
 	 * @param aAnswer 	(double) Het juiste antwoord
 	 * @author Brecht Jr.
 	 */
-	public Exercise(String aQuestion, double aAnswer)
+	public Exercise(String aQuestion, int aAnswer)
 	{
 		question = aQuestion;
 		answer = aAnswer;
@@ -30,13 +32,25 @@ public class Exercise {
 	 * @param aPossibleAnswers (PossibleAnswers) Arraylist mogelijke antwoorden
 	 * @author Brecht Jr.
 	 */
-	public Exercise(String aQuestion, double aAnswer, PossibleAnswers aPossibleAnswers)
+	public Exercise(String aQuestion, int aAnswer, PossibleAnswers aPossibleAnswers)
 	{
 		question = aQuestion;
 		answer = aAnswer;
 		possibleAnswers = aPossibleAnswers;
 	}
 	
+	/**
+	 * Constructor gebruikt door child classes
+	 * @param aMinTotal (int) Laagste cijfer
+	 * @param aMaxTotal (int) Hoogste cijfer
+	 * @param aTotalAnswers (int) Totaal aantal antwoord mogelijkheden
+	 */
+	public Exercise(int aMinTotal, int aMaxTotal, int aTotalAnswers)
+	{
+		minTotal = aMinTotal;
+		maxTotal = aMaxTotal;
+		totalAnswers = aTotalAnswers;
+	}
 	
 	// GETTERS
 	/**
@@ -51,10 +65,10 @@ public class Exercise {
 	
 	/**
 	 * Get antwoord
-	 * @return (double) answer
+	 * @return (int) answer
 	 * @author Brecht Jr.
 	 */
-	public double getAnswer()
+	public int getAnswer()
 	{
 		return answer;
 	}
@@ -67,5 +81,16 @@ public class Exercise {
 	public PossibleAnswers getPossibleAnswers()
 	{
 		return possibleAnswers;
+	}
+	
+	//METHODS
+	protected void GeneratePossibleAnswers(int aAnswer)
+	{
+		possibleAnswers.add(new AnswerChoice(aAnswer));
+		for(int ii = 0;ii<totalAnswers;ii++)
+		{
+			possibleAnswers.add(new AnswerChoice((int) Math.round(Math.random() * (maxTotal-1))+1));
+		}
+		possibleAnswers.Shuffle();
 	}
 }
