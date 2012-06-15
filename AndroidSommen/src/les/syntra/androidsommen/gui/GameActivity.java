@@ -8,6 +8,7 @@ import java.util.Date;
 import org.json.JSONException;
 
 import les.syntra.androidsommen.R;
+import les.syntra.androidsommen.logic.AdapterHighScores;
 import les.syntra.androidsommen.logic.AnswerChoice;
 import les.syntra.androidsommen.logic.Database;
 import les.syntra.androidsommen.logic.Exercise;
@@ -378,7 +379,7 @@ public class GameActivity extends Activity {
 		Button btnGoLevelSelection;
 		Game activeGame;
 		
-		private HighScoreAdapter highScoreAdapter;
+		private AdapterHighScores highScoreAdapter;
 		
 		public ScreenGameOver(Game aCurrentGame)
 		{
@@ -408,15 +409,16 @@ public class GameActivity extends Activity {
 			}
 			
 			
-			// Get the highscores
+			ListView lstHighScores = (ListView)findViewById(R.id.lstHighScores);
+	        
+	        // Get the highscores
 	        ArrayList<Score> ListHighScore = database.getHighScores();
 	        
-	        // create the adapter
-	        highScoreAdapter = new HighScoreAdapter(GameActivity.this, R.layout.tmpl_highscores_item, ListHighScore);
-	        ListView lstHighScores = (ListView)findViewById(R.id.lstHighScores);
-	        
-	        // set the adapter
-	        lstHighScores.setAdapter((ListAdapter) highScoreAdapter);
+	        //Initialize our array adapter
+	        highScoreAdapter = new AdapterHighScores(GameActivity.this, R.layout.tmpl_highscores_item,ListHighScore);
+	 
+	        //Set the above adapter as the adapter of choice for our list
+	        lstHighScores.setAdapter(highScoreAdapter);
 	        
 	        
 			
@@ -434,73 +436,6 @@ public class GameActivity extends Activity {
 				screenLevelSelection = new ScreenLevelSelection();
 			}
 		}
-	}
-	
-	private class HighScoreAdapter extends ArrayAdapter<Score> {
-
-	    private ArrayList<Score> scores;
-	    
-	    public HighScoreAdapter(Activity aContext, int ResId,ArrayList<Score> listHighScore)
-	    {
-	        super(aContext, ResId, listHighScore);
-	        scores = listHighScore;
-	    }
-	  
-	    @Override
-	    public View getView(int position, View convertView, ViewGroup parent) {
-	            View v = convertView;
-	            if (v == null) {
-                    LayoutInflater vi = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                    v = vi.inflate(R.layout.tmpl_highscores_item, null);
-                }
-	            
-	            
-	            Score o = scores.get(position);
-	            
-	            if (o != null) {
-	                    TextView player= (TextView) v.findViewById(R.id.PlayerName);
-	                    
-	                    TextView level = (TextView) v.findViewById(R.id.Level);
-
-	                    TextView dateTime = (TextView) v.findViewById(R.id.DateTime);
-
-	                    TextView score = (TextView) v.findViewById(R.id.Score);
-	                    
-	                    if (player != null) {
-	                    	Log.d("Player: ", "" + o.getPlayer() );
-	                          player.setText("Name: "+o.getPlayer());                           
-	                    }
-	                    if(level != null){
-	                          level.setText("Level: "+ o.getLevelIndex());
-	                    }
-	                    if(dateTime != null){
-	                    	
-	                    	Calendar cal = o.getDateTime();
-	                    	Date dt = cal.getTime();
-	                    	int mins = dt.getMinutes();
-	                    	String strMins;
-	                    	
-	                    	if(mins>9)
-	                    	{
-	                    		strMins = ""+mins;
-	                    	}
-	                    	else
-	                    	{
-	                    		strMins = "0"+mins;
-	                    	}
-
-	                    	String timeStamp = dt.getDay() + "/" + dt.getMonth() + "/" + (1900 + dt.getYear()) +
-	                    			" - " + dt.getHours() + ":" + strMins;
-	                    	
-	                    	dateTime.setText( timeStamp);
-	                    }
-	                    if(score != null){
-	                    	score.setText("Score: "+ o.getScore());
-	                    }
-	            }
-	            return v;
-	    }
-	    
 	}
 	
 }

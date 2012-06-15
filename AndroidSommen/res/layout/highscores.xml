@@ -3,17 +3,22 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
-     
-
+     
 <ListView
-    android:id="@+id/lstHighScores"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" />
-
+    android:layout_height="wrap_content"
+    android:id="@+id/lstHighScores"
+    />
 <TextView
     android:id="@+id/android:empty"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:text="@string/main_no_scores"/>
+
+<ListView
+    android:id="@+id/android:list"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    />
 
 </LinearLayout>

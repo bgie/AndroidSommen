@@ -18,7 +18,13 @@
         android:id="@+id/btnChoosePlayer"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/txtBtnChoosePlayer" />
+        android:text="@string/txtBtnChoosePlayer" />
+
+    <Button
+        android:id="@+id/btnStart"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/txtBtnStart" />
     
     <Button
         android:id="@+id/btnSettings"
@@ -31,12 +37,6 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/txtBtnHighScores" />
-
-    <Button
-        android:id="@+id/btnStart"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/txtBtnStart" />
 
     <!-- <Button
         android:id="@+id/btnDebug"

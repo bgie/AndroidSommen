@@ -30,11 +30,11 @@ public final class R {
         public static final int btnCreatePlayer=0x7f07000a;
         public static final int btnDeleteData=0x7f070026;
         public static final int btnGoLevelSelection=0x7f07001c;
-        public static final int btnHighScores=0x7f07002a;
+        public static final int btnHighScores=0x7f07002b;
         public static final int btnNextLevel=0x7f070002;
         public static final int btnResetScores=0x7f070025;
-        public static final int btnSettings=0x7f070029;
-        public static final int btnStart=0x7f07002b;
+        public static final int btnSettings=0x7f07002a;
+        public static final int btnStart=0x7f070029;
         public static final int gameViewer=0x7f07001d;
         public static final int gridAnswers=0x7f070011;
         public static final int gridLevels=0x7f070001;
