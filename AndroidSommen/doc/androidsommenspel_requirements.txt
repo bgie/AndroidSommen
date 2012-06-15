@@ -45,14 +45,14 @@ Applicatie start
 	- 
 	
 - top scores (3)
-	- weergave hoogste score van elke level. Klik op leven toont:
+	- weergave hoogste score van elke level. Klik op level toont:
 		- weergave top 10 scores op level: naam, aantal punten, datum
 	- reset top scores
 
 ==============================
 
 Opmerkingen:
--games lopen verder ook al is game activity weg --> game moet nog expliciet afgesloten worden
+-games lopen verder ook al is game activity weg --> game moet nog expliciet afgesloten worden?
 
 ->VOORSTELLEN:
 	-Brecht Sr. doet xml afhandeling (volledig highscore en score + overige opslag) 
@@ -159,7 +159,6 @@ RESOURCES:
 -http://pivotal.github.com/robolectric/index.html
 -http://www.youtube.com/watch?v=T6FWL877txw (unit testing android)
 -http://developer.android.com/reference/android/view/ViewGroup.html
--http://karanar.net/?p=25 (sound)
 
 Voor gridview:
 -http://stackoverflow.com/questions/775188/add-an-array-of-buttons-to-a-gridview-in-an-android-application
@@ -193,3 +192,4 @@ Reeds in app:
 -http://developer.android.com/reference/android/provider/Settings.System.html
 -http://developer.android.com/reference/android/media/MediaPlayer.html
 -http://stackoverflow.com/questions/6849159/android-soundpool-stop-does-not-seem-to-work
+-http://www.josecgomez.com/2010/05/03/android-putting-custom-objects-in-listview/
