@@ -150,24 +150,13 @@ public class Level {
 		//Multi select operand
 		if(randomOperand == '+' || randomOperand == '*')
 		{// als + of maal dan uitkomst is gelijk aan maxtotal
-			//result = (int) Math.round(Math.random() * (maxTotal-minTotal))+minTotal;
+
 			if(randomOperand == '+')
 			{
-				/*digit1 = (int) Math.round(Math.random() * result);
-				digit2 = result - digit1;
-				question = digit1+ " + " +digit2+ "=?";
-				answer = result;*/
 				exercise =  new ExerciseSum(minTotal, maxTotal, totalAnswers);
 			}
 			else
 			{// Operand = *
-				//result als tijdelijke "seed"
-				//TODO verbeter algorithme voor opgave generator
-				/*digit1 = (int) Math.round(Math.random() * Math.sqrt(result));
-				digit2 = (int) Math.round(Math.random() * Math.sqrt(result));
-				result = digit1 * digit2;
-				question = digit1+ " x " +digit2+ "=?";
-				answer = result;*/
 				exercise =  new ExerciseMultiply(minTotal, maxTotal, totalAnswers);
 			}
 		}
@@ -176,35 +165,14 @@ public class Level {
 			
 			if(randomOperand == '-')
 			{
-				/*int digit1 = (int) Math.round(Math.random() * (maxTotal-minTotal))+minTotal;
-				int digit2 = (int) Math.round(Math.random() * digit1);
-				int result = digit1 - digit2;
-				String question = digit1+ " - " +digit2+ "=?";
-				int answer = result;*/
 				exercise =  new ExerciseSubstraction(minTotal, maxTotal, totalAnswers);
 			}
 			else
 			{// Operand = /
-				//TODO verbeter algorithme voor opgave generator
-				/*digit2 = (int) Math.round(Math.random() * Math.sqrt(maxTotal-minTotal-1))+minTotal+1;
-				result = (int) Math.round(Math.random() * Math.sqrt(maxTotal-minTotal))+minTotal;
-				digit1 = result*digit2;
-				question = digit1+ " : " +digit2+ "=?";
-				answer = result;*/
 				exercise =  new ExerciseDivision(minTotal, maxTotal, totalAnswers);
 			}
 		}
 		
-		//Exercise exercise =  new SumExercise(minTotal, maxTotal, totalAnswers);
-		
-		//TODO verbeter generator vanantwoorden
-		/*possibleAnswers.add(new AnswerChoice(result));
-		for(int ii = 0;ii<totalAnswers;ii++)
-		{
-			possibleAnswers.add(new AnswerChoice((int) Math.round(Math.random() * (maxTotal-1))+1));
-		}
-		possibleAnswers.Shuffle();*/
-		//Exercise exercise =  new Exercise(question, answer, possibleAnswers);
 		return exercise;
 	}
 	

@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
-
+
     <TextView
         android:id="@+id/lblLevelSelection"
         android:layout_width="wrap_content"
@@ -15,13 +15,15 @@
         android:id="@+id/gridLevels"
         android:layout_width="fill_parent"
         android:layout_height="240dp"
+        android:layout_weight="0.65"
         android:numColumns="3" >
-    </GridView>
+    </GridView>
+
     <Button
         android:id="@+id/btnNextLevel"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.65"
+        android:layout_weight="0.16"
         android:text="@string/txtBtnNextLevel"
         android:textSize="30dp" />
 

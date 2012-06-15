@@ -149,6 +149,8 @@ public class Game {
   	
   	public void TimesUp()
   	{
+  		//Roep slechts 1 maal per spel op
+  		if(gameOver) return;
   		time = 0;
   		gameOver = true;
   		//nieuwe huidige tijd nodig

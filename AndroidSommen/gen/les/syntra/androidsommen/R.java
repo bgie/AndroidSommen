@@ -20,21 +20,21 @@ public final class R {
         public static final int ic_launcher_red_cube_icon=0x7f020001;
     }
     public static final class id {
-        public static final int DateTime=0x7f07002a;
-        public static final int Level=0x7f070029;
-        public static final int PlayerName=0x7f070028;
-        public static final int Score=0x7f07002b;
-        public static final int appLogo=0x7f070022;
+        public static final int DateTime=0x7f07002e;
+        public static final int Level=0x7f07002d;
+        public static final int PlayerName=0x7f07002c;
+        public static final int Score=0x7f07002f;
+        public static final int appLogo=0x7f070027;
         public static final int btnAnswer=0x7f070010;
-        public static final int btnChoosePlayer=0x7f070023;
+        public static final int btnChoosePlayer=0x7f070028;
         public static final int btnCreatePlayer=0x7f07000a;
-        public static final int btnDebug=0x7f070027;
-        public static final int btnDeleteData=0x7f070021;
+        public static final int btnDeleteData=0x7f070026;
         public static final int btnGoLevelSelection=0x7f07001c;
-        public static final int btnHighScores=0x7f070025;
+        public static final int btnHighScores=0x7f07002a;
         public static final int btnNextLevel=0x7f070002;
-        public static final int btnSettings=0x7f070024;
-        public static final int btnStart=0x7f070026;
+        public static final int btnResetScores=0x7f070025;
+        public static final int btnSettings=0x7f070029;
+        public static final int btnStart=0x7f07002b;
         public static final int gameViewer=0x7f07001d;
         public static final int gridAnswers=0x7f070011;
         public static final int gridLevels=0x7f070001;
@@ -56,7 +56,11 @@ public final class R {
         public static final int lblQuestion=0x7f07000e;
         public static final int lblScore=0x7f07000d;
         public static final int lblTime=0x7f07000c;
+        public static final int lstHighScores=0x7f070021;
         public static final int lstPlayers=0x7f070004;
+        public static final int sbVolume=0x7f070024;
+        public static final int tbtnSoundEnabled=0x7f070023;
+        public static final int textView1=0x7f070022;
         public static final int textView2=0x7f070014;
         public static final int textView4=0x7f070016;
         public static final int textView5=0x7f070015;

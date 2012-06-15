@@ -20,12 +20,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 
 public class HighScoresActivity extends ListActivity {
 
-	// initilise the database
+	// initialise the database
 	Database database = null;;
 	
 	// declare the adapter
@@ -49,20 +51,16 @@ TODO: styles aanpassen
         setContentView(R.layout.highscores);
         
         try {
-     			database = Database.instance(this);
-     		} catch (JSONException e1) {
-     			// TODO Auto-generated catch block
-     			e1.printStackTrace();
-     		} catch (IOException e1) {
-     			// TODO Auto-generated catch block
-     			e1.printStackTrace();
-     		}
+			database = Database.instance(this);
+		} catch (JSONException e1) {
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
         
         
         String appName = getString(R.string.app_name);
-    
         String activeScreen = getString(R.string.txtBtnHighScores);
-    
         setTitle(appName + " -> " + activeScreen);
   
 
@@ -70,10 +68,11 @@ TODO: styles aanpassen
         ArrayList<Score> ListHighScore = database.getHighScores();
         
         // create the adapter
-        this.highScoreAdapter = new HighScoreAdapter(this, R.layout.tmpl_highscores_item, ListHighScore);
+        highScoreAdapter = new HighScoreAdapter(this, R.layout.tmpl_highscores_item, ListHighScore);
+        ListView lstHighScores = (ListView)findViewById(R.id.lstHighScores);
         
         // set the adapter
-        setListAdapter(this.highScoreAdapter);
+        lstHighScores.setAdapter((ListAdapter) highScoreAdapter);
         
      		
 	}
@@ -127,9 +126,20 @@ private class HighScoreAdapter  extends ArrayAdapter<Score> {
 	                    	
 	                    	Calendar cal = o.getDateTime();
 	                    	Date dt = cal.getTime();
+	                    	int mins = dt.getMinutes();
+	                    	String strMins;
+	                    	
+	                    	if(mins>9)
+	                    	{
+	                    		strMins = ""+mins;
+	                    	}
+	                    	else
+	                    	{
+	                    		strMins = "0"+mins;
+	                    	}
 
 	                    	String timeStamp = dt.getDay() + "/" + dt.getMonth() + "/" + (1900 + dt.getYear()) +
-	                    			" - " + dt.getHours() + ":" + dt.getMinutes();
+	                    			" - " + dt.getHours() + ":" + strMins;
 	                    	
 	                    	dateTime.setText( timeStamp);
 	                    }

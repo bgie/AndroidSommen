@@ -38,11 +38,11 @@
         android:layout_height="wrap_content"
         android:text="@string/txtBtnStart" />
 
-    <Button
+    <!-- <Button
         android:id="@+id/btnDebug"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="[DEBUG]" />
+        android:text="[DEBUG]" /> -->
 
 </LinearLayout>

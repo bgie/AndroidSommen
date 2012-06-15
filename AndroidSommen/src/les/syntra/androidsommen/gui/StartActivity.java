@@ -90,7 +90,7 @@ public class StartActivity extends Activity {
 			}
 		});        
         
-        Button btnDebug = (Button)findViewById(R.id.btnDebug);
+        /*Button btnDebug = (Button)findViewById(R.id.btnDebug);
         btnDebug.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -100,9 +100,9 @@ public class StartActivity extends Activity {
 					database.getPlayers().add(new Player("Fons",34));
 					database.getPlayers().add(new Player("Mimi",58));
 					database.getPlayers().add(p = new Player("Brecht",32,3,0));
-					database.getHighScores().add(new Score("Mimi",0,1000000));
-					database.getHighScores().add(new Score("Fons",0,2000000));
-					database.getHighScores().add(new Score("Brecht",0,3000000));
+					database.getHighScores().add(new Score("Mimi",0,100));
+					database.getHighScores().add(new Score("Fons",0,200));
+					database.getHighScores().add(new Score("Brecht",0,300));
 					database.setActivePlayer(p);
 					database.saveAll();	
 					Log.d("Database", "Database heeft " + database.getPlayers().size() + " spelers.");
@@ -117,14 +117,12 @@ public class StartActivity extends Activity {
 					e.printStackTrace();
 				}
 			}
-		});
+		});*/
 	}
 	
 	@Override 
 	public void onResume() {
 		super.onResume();
-		//Log.d("onResume", database != null ? "database bestaat" : "database bestaat niet");
-		//Log.d("onResume", btnStart != null ? "btnStart bestaat" : "btnStart bestaat niet");
 		btnStart.setEnabled(database.getActivePlayer() != null);
 		sounds.PlayStartScreenLoop();
 	}
