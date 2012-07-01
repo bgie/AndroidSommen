@@ -19,6 +19,7 @@ import les.syntra.androidsommen.logic.Score;
 import les.syntra.androidsommen.logic.Sounds;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -165,21 +166,7 @@ public class GameActivity extends Activity {
 			}
 		}
 		
-		/**
-		 * Start hoogst vrijgespeeld level
-		 * @author Brecht Jr.
-		 */
-		class NextLevel implements OnClickListener
-		{
-			@Override
-			public void onClick(View v) {
-				//Start spel met huidige player en huidig unlockedlevelindex
-				activeGame = new Game(database,database.getActivePlayer().getUnlockedLevelIndex());
-				//activeGame = new Game(database.getActivePlayer(),database.getActivePlayer().getUnlockedLevelIndex());
-				vfGameViewer.setDisplayedChild(vfGameViewer.indexOfChild(findViewById(R.id.layoutGame)));
-				screenGame = new ScreenGame();
-			}
-		}
+		
 	}
 	
 	class ScreenGame
@@ -376,7 +363,7 @@ public class GameActivity extends Activity {
 	class ScreenGameOver
 	{
 		TextView lblEndTimePlayed,lblEndScore,lblEndCorrect,lblEndNeeded,lblLevelPassed;
-		Button btnGoLevelSelection;
+		Button btnGoLevelSelection,btnNextLevel,btnReplayLevel;
 		Game activeGame;
 		
 		private AdapterHighScores highScoreAdapter;
@@ -391,6 +378,18 @@ public class GameActivity extends Activity {
 			lblLevelPassed = (TextView)findViewById(R.id.lblLevelPassed);
 			btnGoLevelSelection = (Button)findViewById(R.id.btnGoLevelSelection);
 			btnGoLevelSelection.setOnClickListener(new GoToLevelSelection());
+			btnNextLevel = (Button)findViewById(R.id.btnGoNextLevel);
+			btnNextLevel.setOnClickListener(new NextLevel());
+			btnReplayLevel = (Button)findViewById(R.id.btnReplayLevel);
+			btnReplayLevel.setOnClickListener(new View.OnClickListener() {		
+				@Override
+				public void onClick(View v) {
+					//Start spel met huidige player en huidig unlockedlevelindex
+					activeGame = new Game(database,activeGame.getCurrentLevel().getLevelIndex());
+					vfGameViewer.setDisplayedChild(vfGameViewer.indexOfChild(findViewById(R.id.layoutGame)));
+					screenGame = new ScreenGame();
+				}
+			});
 			
 			lblEndTimePlayed.setText(""+Math.round(activeGame.getPlayTime()/1000)+" sec.");
 			lblEndScore.setText(""+activeGame.getScore());
@@ -398,13 +397,16 @@ public class GameActivity extends Activity {
 			lblEndNeeded.setText(""+activeGame.getCurrentLevel().getCorrectAnswersNeeded());
 			if(activeGame.IsLevelCompleted())
 			{
-				String strLevelPassedMessage = getString(R.string.txtLblLevelPassedMessage);
-				lblLevelPassed.setText(""+strLevelPassedMessage);
+				//String strLevelPassedMessage = getString(R.string.txtLblLevelPassedMessage);
+				//lblLevelPassed.setText(""+strLevelPassedMessage);
+				lblLevelPassed.setVisibility(View.VISIBLE);
+				btnReplayLevel.setVisibility(View.GONE);
 				sounds.PlayEndScreenPass();
 			}
 			else
 			{
-				lblLevelPassed.setText("");
+				lblLevelPassed.setVisibility(View.GONE);
+				btnReplayLevel.setVisibility(View.VISIBLE);
 				sounds.PlayEndScreenFail();
 			}
 			
@@ -420,8 +422,6 @@ public class GameActivity extends Activity {
 	        //Set the above adapter as the adapter of choice for our list
 	        lstHighScores.setAdapter(highScoreAdapter);
 	        
-	        
-			
 		}
 		
 		/**
@@ -437,5 +437,19 @@ public class GameActivity extends Activity {
 			}
 		}
 	}
-	
+	/**
+	 * Start hoogst vrijgespeeld level
+	 * @author Brecht Jr.
+	 */
+	class NextLevel implements OnClickListener
+	{
+		@Override
+		public void onClick(View v) {
+			//Start spel met huidige player en huidig unlockedlevelindex
+			activeGame = new Game(database,database.getActivePlayer().getUnlockedLevelIndex());
+			//activeGame = new Game(database.getActivePlayer(),database.getActivePlayer().getUnlockedLevelIndex());
+			vfGameViewer.setDisplayedChild(vfGameViewer.indexOfChild(findViewById(R.id.layoutGame)));
+			screenGame = new ScreenGame();
+		}
+	}
 }

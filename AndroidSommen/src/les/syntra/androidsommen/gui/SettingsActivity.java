@@ -5,13 +5,9 @@ import java.io.IOException;
 import org.json.JSONException;
 
 import les.syntra.androidsommen.R;
-import les.syntra.androidsommen.gui.GameActivity.ScreenLevelSelection.NextLevel;
 import les.syntra.androidsommen.logic.Database;
-import les.syntra.androidsommen.logic.Player;
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 

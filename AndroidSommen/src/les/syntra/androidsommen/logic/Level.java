@@ -1,5 +1,10 @@
 package les.syntra.androidsommen.logic;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+
 
 /* Ontwerp velden:
 	> LevelIndex: int
@@ -24,6 +29,7 @@ public class Level {
 	int totalCorrectAnswers = 1;
 	boolean levelPassed = false;
 	String operands = "+-*/";
+	ArrayList<Integer> baseDigits;
 	
 	public Level(int aLevelIndex)
 	{
@@ -39,39 +45,48 @@ public class Level {
 			setLevelSettings("+", 1, 10);
 		break;
 		case 2:
-			setLevelSettings("-", 3, 10);
+			setLevelSettings("+", 3, 10);
 		break;
 		case 3:
-			setLevelSettings("*", 5, 20);
+			setLevelSettings("-", 1, 10);
 		break;
 		case 4:
-			setLevelSettings("/", 5, 10);
+			setLevelSettings("-", 3, 10);
 		break;
 		case 5:
-			setLevelSettings("+-", 5, 10);
+			setLevelSettings("*", 1, 10, new ArrayList<Integer>(Arrays.asList(0,1)));
 		break;
 		case 6:
-			setLevelSettings("+-*", 5, 20);
+			setLevelSettings("*", 3, 10, new ArrayList<Integer>(Arrays.asList(0,1)));
 		break;
 		case 7:
-			setLevelSettings("+-*/", 5, 20);
+			setLevelSettings("/", 5, 10);
 		break;
 		case 8:
-			setLevelSettings("+-*/", 5, 30);
+			setLevelSettings("+-", 5, 10);
 		break;
 		case 9:
-			setLevelSettings("+-*/", 5, 50);
+			setLevelSettings("+-*", 5, 20);
 		break;
 		case 10:
-			setLevelSettings("+-*/", 10, 100, 10);
+			setLevelSettings("+-*/", 5, 20);
 		break;
 		case 11:
+			setLevelSettings("+-*/", 5, 30);
+		break;
+		case 12:
+			setLevelSettings("+-*/", 5, 50);
+		break;
+		case 13:
+			setLevelSettings("+-*/", 10, 100, 10);
+		break;
+		case 14:
 			setLevelSettings("+-*/", 10, 100, 30, 10);
 		break;
 		default:
 			setLevelSettings("+-*/", 20, 999999, 0, 30);
 		}
-		totalAnswers = levelIndex + 1;
+		//totalAnswers = levelIndex + 1;
 	}
 	
 	//GETTERS
@@ -101,6 +116,14 @@ public class Level {
 	}
 	
 	//SETTERS
+	/**
+	 * Level instellen met operands, aantal juiste antwoorden, maxTotal, minTotal en penaltytime
+	 * @param aOperands
+	 * @param aCorrectAnswersNeeded
+	 * @param aMaxTotal
+	 * @param aMinTotal
+	 * @param aPenaltyTime
+	 */
 	private void setLevelSettings(String aOperands, int aCorrectAnswersNeeded, int aMaxTotal, 
 									int aMinTotal, int aPenaltyTime)
 	{
@@ -109,8 +132,17 @@ public class Level {
 		minTotal = aMinTotal;
 		maxTotal = aMaxTotal;
 		operands = aOperands;
+		totalAnswers = aCorrectAnswersNeeded;
 	}
 	
+	/**
+	 * Level instellen met operands, aantal juiste antwoorden, maxTotal en penaltytime
+	 * Zonder minTotal
+	 * @param aOperands
+	 * @param aCorrectAnswersNeeded
+	 * @param aMaxTotal
+	 * @param aPenaltyTime
+	 */
 	private void setLevelSettings(String aOperands, int aCorrectAnswersNeeded,
 									int aMaxTotal, int aPenaltyTime)
 	{
@@ -119,8 +151,16 @@ public class Level {
 		minTotal = 0;
 		maxTotal = aMaxTotal;
 		operands = aOperands;
+		totalAnswers = aCorrectAnswersNeeded;
 	}
 	
+	/**
+	 * Level instellen met operands, aantal juiste antwoorden, maxTotal
+	 * Zonder minTotal en penaltytime
+	 * @param aOperands
+	 * @param aCorrectAnswersNeeded
+	 * @param aMaxTotal
+	 */
 	private void setLevelSettings(String aOperands, int aCorrectAnswersNeeded,
 			int aMaxTotal)
 	{
@@ -129,17 +169,31 @@ public class Level {
 		minTotal = 0;
 		maxTotal = aMaxTotal;
 		operands = aOperands;
+		totalAnswers = aCorrectAnswersNeeded;
 	}
 	
+	/**
+	 * Level instellen met operands, aantal juiste antwoorden, maxTotal en basedigits
+	 * Zonder minTotal en penaltytime
+	 * @param aOperands
+	 * @param aCorrectAnswersNeeded
+	 * @param aMaxTotal
+	 * @param aBaseDigits
+	 */
+	private void setLevelSettings(String aOperands, int aCorrectAnswersNeeded,
+			int aMaxTotal, ArrayList<Integer> aBaseDigits)
+	{
+		penaltyTime = 5;
+		correctAnswersNeeded = aCorrectAnswersNeeded;
+		minTotal = 0;
+		maxTotal = aMaxTotal;
+		operands = aOperands;
+		baseDigits = aBaseDigits;
+		totalAnswers = aCorrectAnswersNeeded;
+	}
 	//METHODS
 	public Exercise CreateExercise()
 	{
-		//int result = 0;
-		//int digit1 = 0;
-		//int digit2 = 0;
-		//String question = "?+?=?";
-		//double answer = 0;
-		//PossibleAnswers possibleAnswers = new PossibleAnswers();
 		Exercise exercise;
 		
 		//Bepaal operand
@@ -157,7 +211,7 @@ public class Level {
 			}
 			else
 			{// Operand = *
-				exercise =  new ExerciseMultiply(minTotal, maxTotal, totalAnswers);
+				exercise =  new ExerciseMultiply(minTotal, maxTotal, totalAnswers, baseDigits);
 			}
 		}
 		else

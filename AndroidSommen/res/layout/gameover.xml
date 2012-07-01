@@ -99,14 +99,31 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text=""
+        android:text="@string/txtLblLevelPassedMessage"
+        android:visibility="gone"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <Button
-        android:id="@+id/btnGoLevelSelection"
+	<Button
+	        android:id="@+id/btnReplayLevel"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:visibility="gone"
+	        android:text="Try again?" />	<LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Level selection" />
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
+	    <Button
+	        android:id="@+id/btnGoLevelSelection"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="0.50"
+	        android:text="@string/txtLblLevelSelection" />		
+		<Button
+	        android:id="@+id/btnGoNextLevel"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="0.50"
+	        android:text="@string/txtBtnNextLevel" />	</LinearLayout>
     <include
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"

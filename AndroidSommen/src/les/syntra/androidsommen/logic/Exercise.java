@@ -1,11 +1,5 @@
 package les.syntra.androidsommen.logic;
 
-
-/* Ontwerp velden:
-	> Question: string
-	> Answer: double
-	> Exercise(question, answer)
- */
 public abstract class Exercise {
 	String question = "";
 	int answer = 0;
