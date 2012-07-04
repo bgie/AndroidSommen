@@ -42,16 +42,16 @@ public class Level {
 		switch(levelIndex)
 		{
 		case 1:
-			setLevelSettings("+", 1, 10);
+			setLevelSettings("+", 1, 10, new ArrayList<Integer>(Arrays.asList(0,1)));
 		break;
 		case 2:
-			setLevelSettings("+", 3, 10);
+			setLevelSettings("+", 3, 10, new ArrayList<Integer>(Arrays.asList(0,1)));
 		break;
 		case 3:
-			setLevelSettings("-", 1, 10);
+			setLevelSettings("-", 1, 10, new ArrayList<Integer>(Arrays.asList(0,1)));
 		break;
 		case 4:
-			setLevelSettings("-", 3, 10);
+			setLevelSettings("-", 3, 10, new ArrayList<Integer>(Arrays.asList(0,1)));
 		break;
 		case 5:
 			setLevelSettings("*", 1, 10, new ArrayList<Integer>(Arrays.asList(0,1)));
