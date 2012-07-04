@@ -60,7 +60,7 @@ public class Level {
 			setLevelSettings("*", 3, 10, new ArrayList<Integer>(Arrays.asList(0,1)));
 		break;
 		case 7:
-			setLevelSettings("/", 5, 10);
+			setLevelSettings("/", 5, 10, new ArrayList<Integer>(Arrays.asList(0,1)));
 		break;
 		case 8:
 			setLevelSettings("+-", 5, 10);
@@ -201,31 +201,63 @@ public class Level {
 		int randomOperandIndex = (int) Math.floor(Math.random() * operandQty );
 		char randomOperand = operands.charAt(randomOperandIndex);
 		
-		//Multi select operand
-		if(randomOperand == '+' || randomOperand == '*')
-		{// als + of maal dan uitkomst is gelijk aan maxtotal
+		if(baseDigits != null)
+		{
+			//Multi select operand
+			if(randomOperand == '+' || randomOperand == '*')
+			{// als + of maal dan uitkomst is gelijk aan maxtotal
 
-			if(randomOperand == '+')
-			{
-				exercise =  new ExerciseSum(minTotal, maxTotal, totalAnswers);
+				if(randomOperand == '+')
+				{
+					exercise =  new ExerciseSum(minTotal, maxTotal, totalAnswers, baseDigits);
+				}
+				else
+				{// Operand = *
+					exercise =  new ExerciseMultiply(minTotal, maxTotal, totalAnswers, baseDigits);
+				}
 			}
 			else
-			{// Operand = *
-				exercise =  new ExerciseMultiply(minTotal, maxTotal, totalAnswers, baseDigits);
+			{// als - of / dan grootste getal is gelijk aan maxtotal
+				
+				if(randomOperand == '-')
+				{
+					exercise =  new ExerciseSubstraction(minTotal, maxTotal, totalAnswers, baseDigits);
+				}
+				else
+				{// Operand = /
+					exercise =  new ExerciseDivision(minTotal, maxTotal, totalAnswers, baseDigits);
+				}
 			}
 		}
 		else
-		{// als - of / dan grootste getal is gelijk aan maxtotal
-			
-			if(randomOperand == '-')
-			{
-				exercise =  new ExerciseSubstraction(minTotal, maxTotal, totalAnswers);
+		{
+			//Multi select operand
+			if(randomOperand == '+' || randomOperand == '*')
+			{// als + of maal dan uitkomst is gelijk aan maxtotal
+
+				if(randomOperand == '+')
+				{
+					exercise =  new ExerciseSum(minTotal, maxTotal, totalAnswers);
+				}
+				else
+				{// Operand = *
+					exercise =  new ExerciseMultiply(minTotal, maxTotal, totalAnswers);
+				}
 			}
 			else
-			{// Operand = /
-				exercise =  new ExerciseDivision(minTotal, maxTotal, totalAnswers);
+			{// als - of / dan grootste getal is gelijk aan maxtotal
+				
+				if(randomOperand == '-')
+				{
+					exercise =  new ExerciseSubstraction(minTotal, maxTotal, totalAnswers);
+				}
+				else
+				{// Operand = /
+					exercise =  new ExerciseDivision(minTotal, maxTotal, totalAnswers);
+				}
 			}
 		}
+		
 		
 		return exercise;
 	}
